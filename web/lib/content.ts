@@ -67,11 +67,11 @@ export function getStory(slug: string) {
 
 export function getAllWords() {
   const wordsDir = path.join(contentDirectory, "words");
-  if (!fs.existsSync(wordsDir)) return [];
+  if (!fs.existsSync(wordsDir)) return null;
 
   // Assuming words.md is the main file
   const fullPath = path.join(wordsDir, "words.md");
-  if (!fs.existsSync(fullPath)) return [];
+  if (!fs.existsSync(fullPath)) return null;
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   return fileContents;
