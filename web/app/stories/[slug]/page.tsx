@@ -58,13 +58,13 @@ export default async function StoryPage({
           </header>
         )}
 
-        <article className="prose prose-xl prose-invert max-w-none prose-headings:font-bold prose-headings:text-stone-100 prose-p:text-stone-300 prose-p:leading-loose prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
+        <article className="prose prose-xl prose-invert max-w-none prose-headings:font-bold prose-headings:text-stone-100 prose-p:text-stone-300 prose-p:leading-normal prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               // @ts-ignore
               img: ({ node, ...props }) => (
-                <span className="block my-12 rounded-xl overflow-hidden border border-white/5 shadow-2xl shadow-black/40 bg-slate-900/50">
+                <span className="block my-8 rounded-xl overflow-hidden border border-white/5 shadow-2xl shadow-black/40 bg-slate-900/50">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     {...props}
@@ -76,7 +76,7 @@ export default async function StoryPage({
               // @ts-ignore
               blockquote: ({ node, ...props }) => (
                 <blockquote
-                  className="not-italic border-l-2 border-orange-500/50 pl-8 py-2 my-12 bg-gradient-to-r from-orange-900/10 to-transparent text-stone-400 font-serif text-2xl leading-normal"
+                  className="not-italic border-l-2 border-orange-500/50 pl-6 py-2 my-6 bg-gradient-to-r from-orange-900/10 to-transparent text-stone-400 font-serif text-lg leading-snug"
                   {...props}
                 />
               ),
@@ -98,27 +98,27 @@ export default async function StoryPage({
               h1: ({ node, ...props }) => (
                 // Render h1 invisible if it matches title to avoid duplication, or style it if used within content
                 <h1
-                  className="text-3xl md:text-4xl font-bold mt-16 mb-8 text-stone-100 border-b border-white/5 pb-4"
+                  className="text-3xl md:text-4xl font-bold mt-10 mb-6 text-stone-100 border-b border-white/5 pb-3"
                   {...props}
                 />
               ),
               // @ts-ignore
               h2: ({ node, ...props }) => (
                 <h2
-                  className="text-2xl md:text-3xl font-bold mt-16 mb-6 text-stone-200 font-sans tracking-tight"
+                  className="text-2xl md:text-3xl font-bold mt-10 mb-4 text-stone-200 font-sans tracking-tight"
                   {...props}
                 />
               ),
               // @ts-ignore
               h3: ({ node, ...props }) => (
                 <h3
-                  className="text-xl md:text-2xl font-bold mt-12 mb-4 text-stone-300 font-sans"
+                  className="text-xl md:text-2xl font-bold mt-8 mb-3 text-stone-300 font-sans"
                   {...props}
                 />
               ),
               // @ts-ignore
               hr: ({ node, ...props }) => (
-                <div className="my-16 flex items-center justify-center gap-4 opacity-30">
+                <div className="my-10 flex items-center justify-center gap-4 opacity-30">
                   <div className="h-px w-full bg-stone-500"></div>
                   <div className="text-stone-500 text-xl">❦</div>
                   <div className="h-px w-full bg-stone-500"></div>
@@ -126,19 +126,22 @@ export default async function StoryPage({
               ),
               // @ts-ignore
               p: ({ node, ...props }) => (
-                <p className="mb-8 text-stone-300/90 leading-8" {...props} />
+                <p
+                  className="mb-6 text-stone-300/90 leading-normal"
+                  {...props}
+                />
               ),
               // @ts-ignore
               ul: ({ node, ...props }) => (
                 <ul
-                  className="list-disc list-outside ml-6 mb-8 space-y-2 text-stone-300"
+                  className="list-disc list-outside ml-6 mb-6 space-y-1 text-stone-300"
                   {...props}
                 />
               ),
               // @ts-ignore
               ol: ({ node, ...props }) => (
                 <ol
-                  className="list-decimal list-outside ml-6 mb-8 space-y-2 text-stone-300"
+                  className="list-decimal list-outside ml-6 mb-6 space-y-1 text-stone-300"
                   {...props}
                 />
               ),
