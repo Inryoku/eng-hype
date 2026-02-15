@@ -1,0 +1,17 @@
+# MacOS
+.DS_Store
+
+# Next.js
+.next
+out
+build
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
