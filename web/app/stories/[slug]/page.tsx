@@ -36,11 +36,11 @@ export default async function StoryPage({
   const content = story.content.replace(/\.\.\/images\//g, "/eng-hype/images/");
 
   return (
-    <div className="min-h-screen bg-slate-950 text-stone-200 font-[family-name:var(--font-lora)] selection:bg-orange-500/30 selection:text-orange-100">
+    <div className="min-h-screen bg-stone-50 text-stone-900 font-[family-name:var(--font-lora)] selection:bg-orange-200 selection:text-orange-900">
       <div className="max-w-3xl mx-auto p-6 md:p-12 pb-32">
         <Link
           href="/stories"
-          className="group inline-flex items-center gap-2 text-stone-500 hover:text-orange-400 mb-12 transition-colors text-sm font-sans font-medium tracking-wide"
+          className="group inline-flex items-center gap-2 text-stone-500 hover:text-orange-600 mb-12 transition-colors text-sm font-sans font-medium tracking-wide"
         >
           <span className="group-hover:-translate-x-1 transition-transform">
             ←
@@ -51,24 +51,24 @@ export default async function StoryPage({
         {/* Story Header Area */}
         {story.title && (
           <header className="mb-16 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-orange-400 to-rose-500 leading-tight pb-2">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-stone-900 leading-tight pb-2">
               {story.title}
             </h1>
-            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent mx-auto rounded-full"></div>
+            <div className="h-1 w-24 bg-orange-200 mx-auto rounded-full"></div>
           </header>
         )}
 
-        <article className="prose prose-xl prose-invert max-w-none prose-headings:font-bold prose-headings:text-stone-100 prose-p:text-stone-300 prose-p:leading-normal prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
+        <article className="prose prose-xl prose-stone max-w-none prose-headings:font-bold prose-headings:text-stone-900 prose-p:text-stone-700 prose-p:leading-normal prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               // @ts-ignore
               img: ({ node, ...props }) => (
-                <span className="block my-8 rounded-xl overflow-hidden border border-white/5 shadow-2xl shadow-black/40 bg-slate-900/50">
+                <span className="block my-8 rounded-xl overflow-hidden border border-stone-200 shadow-lg shadow-stone-200 bg-stone-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     {...props}
-                    className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity duration-700"
+                    className="w-full h-auto object-cover opacity-95 hover:opacity-100 transition-opacity duration-700 mix-blend-multiply"
                     alt={props.alt || ""}
                   />
                 </span>
@@ -76,21 +76,21 @@ export default async function StoryPage({
               // @ts-ignore
               blockquote: ({ node, ...props }) => (
                 <blockquote
-                  className="not-italic border-l-2 border-orange-500/50 pl-6 py-2 my-6 bg-gradient-to-r from-orange-900/10 to-transparent text-stone-400 font-serif text-lg leading-snug"
+                  className="not-italic border-l-4 border-orange-300 pl-6 py-2 my-6 bg-orange-50 text-stone-600 font-serif text-lg leading-snug"
                   {...props}
                 />
               ),
               // @ts-ignore
               strong: ({ node, ...props }) => (
                 <strong
-                  className="text-orange-300 font-bold bg-orange-900/10 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline"
+                  className="text-stone-900 font-bold bg-orange-100 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline"
                   {...props}
                 />
               ),
               // @ts-ignore
               a: ({ node, ...props }) => (
                 <a
-                  className="text-orange-400 hover:text-orange-300 underline decoration-orange-500/30 hover:decoration-orange-500 transition-all font-medium decoration-1 underline-offset-4"
+                  className="text-orange-700 hover:text-orange-900 underline decoration-orange-300 hover:decoration-orange-600 transition-all font-medium decoration-1 underline-offset-4"
                   {...props}
                 />
               ),
@@ -98,50 +98,47 @@ export default async function StoryPage({
               h1: ({ node, ...props }) => (
                 // Render h1 invisible if it matches title to avoid duplication, or style it if used within content
                 <h1
-                  className="text-3xl md:text-4xl font-bold mt-10 mb-6 text-stone-100 border-b border-white/5 pb-3"
+                  className="text-3xl md:text-4xl font-bold mt-10 mb-6 text-stone-900 border-b border-stone-200 pb-3"
                   {...props}
                 />
               ),
               // @ts-ignore
               h2: ({ node, ...props }) => (
                 <h2
-                  className="text-2xl md:text-3xl font-bold mt-10 mb-4 text-stone-200 font-sans tracking-tight"
+                  className="text-2xl md:text-3xl font-bold mt-10 mb-4 text-stone-800 font-sans tracking-tight"
                   {...props}
                 />
               ),
               // @ts-ignore
               h3: ({ node, ...props }) => (
                 <h3
-                  className="text-xl md:text-2xl font-bold mt-8 mb-3 text-stone-300 font-sans"
+                  className="text-xl md:text-2xl font-bold mt-8 mb-3 text-stone-800 font-sans"
                   {...props}
                 />
               ),
               // @ts-ignore
               hr: ({ node, ...props }) => (
                 <div className="my-10 flex items-center justify-center gap-4 opacity-30">
-                  <div className="h-px w-full bg-stone-500"></div>
-                  <div className="text-stone-500 text-xl">❦</div>
-                  <div className="h-px w-full bg-stone-500"></div>
+                  <div className="h-px w-full bg-stone-300"></div>
+                  <div className="text-stone-400 text-xl">❦</div>
+                  <div className="h-px w-full bg-stone-300"></div>
                 </div>
               ),
               // @ts-ignore
               p: ({ node, ...props }) => (
-                <p
-                  className="mb-6 text-stone-300/90 leading-normal"
-                  {...props}
-                />
+                <p className="mb-6 text-stone-700 leading-normal" {...props} />
               ),
               // @ts-ignore
               ul: ({ node, ...props }) => (
                 <ul
-                  className="list-disc list-outside ml-6 mb-6 space-y-1 text-stone-300"
+                  className="list-disc list-outside ml-6 mb-6 space-y-1 text-stone-700"
                   {...props}
                 />
               ),
               // @ts-ignore
               ol: ({ node, ...props }) => (
                 <ol
-                  className="list-decimal list-outside ml-6 mb-6 space-y-1 text-stone-300"
+                  className="list-decimal list-outside ml-6 mb-6 space-y-1 text-stone-700"
                   {...props}
                 />
               ),
