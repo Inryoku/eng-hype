@@ -32,8 +32,8 @@ export default async function StoryPage({
   }
 
   // Preprocess content to fix image paths
-  // Converts ../images/foo.png to /images/foo.png
-  const content = story.content.replace(/\.\.\/images\//g, "/images/");
+  // Converts ../images/foo.png to /eng-hype/images/foo.png
+  const content = story.content.replace(/\.\.\/images\//g, "/eng-hype/images/");
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-[family-name:var(--font-geist-sans)]">
