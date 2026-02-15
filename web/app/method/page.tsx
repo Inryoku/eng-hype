@@ -4,7 +4,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export default function MethodPage() {
-  const content = getMethod();
+  const methodContent = getMethod();
+  // Fix image paths for github pages deployment
+  const content = methodContent
+    ? methodContent.replace(/\.\.\/images\//g, "/eng-hype/images/")
+    : null;
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-[family-name:var(--font-geist-sans)] selection:bg-amber-200 selection:text-amber-900">
