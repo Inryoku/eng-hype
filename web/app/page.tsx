@@ -2,33 +2,36 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white selection:bg-cyan-500 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-white">
       <div className="absolute inset-0 z-0 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
       <main className="relative z-10 flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <div className="text-center space-y-4 mb-12">
-          <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-600 sm:text-7xl tracking-tight">
+        <div className="text-center space-y-4 mb-16">
+          <h1 className="text-6xl md:text-8xl font-bold font-[family-name:var(--font-lora)] bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-orange-400 to-rose-500 tracking-tight mb-4">
             Eng Hype
           </h1>
-          <p className="text-xl text-slate-400 max-w-lg mx-auto">
-            Your premium English learning companion. Stories, vocabulary, and
-            methods designed for immersion.
+          <p className="text-xl md:text-2xl text-stone-400 max-w-lg mx-auto font-light leading-relaxed">
+            Your premium English learning library. <br />
+            <span className="text-orange-200/80">
+              Stories, words, and methods
+            </span>{" "}
+            designed for immersion.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full z-10">
           <Link
             href="/stories"
-            className="group relative p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] overflow-hidden"
+            className="group relative p-8 bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl hover:border-orange-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(249,115,22,0.1)] overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2 group-hover:text-cyan-400 transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <h2 className="text-2xl font-serif font-semibold mb-3 flex items-center gap-2 text-stone-200 group-hover:text-orange-400 transition-colors">
               Stories
-              <span className="text-slate-500 group-hover:translate-x-1 transition-transform">
+              <span className="text-stone-500 group-hover:translate-x-1 transition-transform">
                 →
               </span>
             </h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-stone-400 text-sm leading-relaxed">
               Immerse yourself in business dramas and adventures tailored for
               learning.
             </p>
@@ -36,16 +39,16 @@ export default function Home() {
 
           <Link
             href="/words"
-            className="group relative p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl hover:border-purple-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] overflow-hidden"
+            className="group relative p-8 bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl hover:border-rose-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(244,63,94,0.1)] overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2 group-hover:text-purple-400 transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <h2 className="text-2xl font-serif font-semibold mb-3 flex items-center gap-2 text-stone-200 group-hover:text-rose-400 transition-colors">
               Words
-              <span className="text-slate-500 group-hover:translate-x-1 transition-transform">
+              <span className="text-stone-500 group-hover:translate-x-1 transition-transform">
                 →
               </span>
             </h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-stone-400 text-sm leading-relaxed">
               Expand your vocabulary with curated lists and context-rich
               examples.
             </p>
@@ -53,16 +56,16 @@ export default function Home() {
 
           <Link
             href="/method"
-            className="group relative p-8 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] overflow-hidden"
+            className="group relative p-8 bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl hover:border-amber-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.1)] overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2 group-hover:text-emerald-400 transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <h2 className="text-2xl font-serif font-semibold mb-3 flex items-center gap-2 text-stone-200 group-hover:text-amber-400 transition-colors">
               Method
-              <span className="text-slate-500 group-hover:translate-x-1 transition-transform">
+              <span className="text-stone-500 group-hover:translate-x-1 transition-transform">
                 →
               </span>
             </h2>
-            <p className="text-slate-400 text-sm">
+            <p className="text-stone-400 text-sm leading-relaxed">
               Learn the effective strategies behind our content-first approach.
             </p>
           </Link>

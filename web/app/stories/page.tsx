@@ -9,11 +9,11 @@ export default function StoriesPage() {
       <header className="mb-12 text-center">
         <Link
           href="/"
-          className="text-cyan-400 hover:text-cyan-300 transition-colors mb-4 inline-block text-sm font-medium"
+          className="text-orange-400 hover:text-orange-300 transition-colors mb-4 inline-block text-sm font-medium"
         >
           ← Back to Home
         </Link>
-        <h1 className="text-4xl font-bold mt-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+        <h1 className="text-5xl font-bold mt-2 font-[family-name:var(--font-lora)] bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-orange-400 to-rose-500 pb-2">
           Stories
         </h1>
       </header>
@@ -23,9 +23,9 @@ export default function StoriesPage() {
           <Link
             key={story.slug}
             href={`/stories/${story.slug}`}
-            className="block p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-cyan-500/50 transition-all hover:bg-slate-800/50 group"
+            className="block p-8 bg-slate-900/40 border border-white/5 rounded-xl hover:border-orange-500/30 transition-all hover:bg-slate-900/60 group shadow-lg shadow-black/20"
           >
-            <h2 className="text-xl font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors">
+            <h2 className="text-2xl font-serif font-semibold text-stone-200 group-hover:text-orange-400 transition-colors">
               {story.title}
             </h2>
           </Link>
