@@ -2,10 +2,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const contentDirectory = path.join(process.cwd(), "content");
+// Point to the root directory (../) from web/
+// In production (GitHub Actions), the repo is checked out, so ../script exists.
+const contentDirectory = path.join(process.cwd(), "..");
 
 export function getAllStories() {
-  const scriptsDir = path.join(contentDirectory, "scripts");
+  const scriptsDir = path.join(contentDirectory, "script");
   if (!fs.existsSync(scriptsDir)) return [];
 
   const fileNames = fs.readdirSync(scriptsDir);
@@ -41,7 +43,7 @@ export function getAllStories() {
 }
 
 export function getStory(slug: string) {
-  const fullPath = path.join(contentDirectory, "scripts", `${slug}.md`);
+  const fullPath = path.join(contentDirectory, "script", `${slug}.md`);
   if (!fs.existsSync(fullPath)) return null;
 
   const fileContents = fs.readFileSync(fullPath, "utf8");

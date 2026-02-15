@@ -51,14 +51,14 @@ export default async function StoryPage({
             components={{
               // @ts-ignore
               img: ({ node, ...props }) => (
-                <div className="my-10 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900">
+                <span className="block my-10 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     {...props}
                     className="w-full h-auto object-cover"
                     alt={props.alt || ""}
                   />
-                </div>
+                </span>
               ),
               // @ts-ignore
               blockquote: ({ node, ...props }) => (
