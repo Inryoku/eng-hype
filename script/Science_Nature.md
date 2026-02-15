@@ -2,6 +2,8 @@
 
 _(Target Words: The use of the fertilizer, chemical waste, gardener, clinical trials, Independent experts, based on a false premise, The book’s arguments, signify)_
 
+![Science Nature](../images/science_nature.png)
+
 The controversy started in a small village. A local **gardener** noticed that his plants were mutating.
 
 **Independent experts** were called in to investigate.

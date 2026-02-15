@@ -2,6 +2,8 @@
 
 _(Target Words: industrious character, Research record, There is little prospect that, came to an abrupt halt, owed (A) to (B), was intended to, remark, was unsure of)_
 
+![Tech Engineering](../images/tech_engineering.png)
+
 The project **came to an abrupt halt** when the prototype exploded.
 
 The lead engineer, known for his **industrious character**, was devastated.
