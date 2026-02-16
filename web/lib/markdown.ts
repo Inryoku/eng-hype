@@ -22,7 +22,10 @@ export async function parseStoryStructure(
   // 1. Split by "## " (Chapter)
   // The first part is the intro (before any chapter)
   const chapterSplits = markdown.split(/^## /m);
-  const intro = chapterSplits.shift()?.trim() || "";
+  let intro = chapterSplits.shift()?.trim() || "";
+
+  // Remove the H1 title from the intro if it exists (since we render it separately)
+  intro = intro.replace(/^# .*$/m, "").trim();
 
   const chapters = await Promise.all(
     chapterSplits.map(async (chapterBlock) => {
