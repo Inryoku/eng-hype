@@ -1,8 +1,10 @@
 # Story 1: History & Archaeology (The Lost Voyage)
 
+[Mystery Voyage](https://suno.com/song/cf85c29a-6028-4642-80fb-b2f3e508b50c)
+
 _(Target Words: dusty with age, The voyage, probe the ground for, secured, infinite, dumb with surprise)_
 
-![Mystery Voyage](../images/mystery_voyage.png)
+![Mystery Voyage](https://i.postimg.cc/23NRhj4T/Gemini_Generated_Image_jxsdy0jxsdy0jxsd.png)
 
 Elias stood in the center of the abandoned library. The air was thick, and every surface was **dusty with age**.
 
@@ -34,9 +36,15 @@ Just then, a hidden door in the floor creaked open, leaving him **dumb with surp
 
 _(Target Words: academic discipline, the declaration of independence, peasants squashed, had inflicted, renew the books, watermill)_
 
-Inside the hidden chamber, Elias found not gold, but a library of forbidden knowledge. Archaeology was his **academic discipline**, yet nothing had prepared him for this.
+![Forbidden Knowledge](https://i.postimg.cc/MZMn7s7M/Gemini_Generated_Image_nsw4jinsw4jinsw4.png)
 
-On a pedestal lay a document resembling **the declaration of independence**, but far older. It detailed how a tyrant had ruled, leaving **peasants squashed** under heavy taxes and cruel laws.
+Inside the hidden chamber, Elias found not gold, but a library of forbidden knowledge.
+
+**Archaeology** was his **academic discipline**, yet nothing had prepared him for this.
+
+On a pedestal lay a document resembling **the declaration of independence**, but far older.
+
+It detailed how a tyrant had ruled, leaving **peasants squashed** under heavy taxes and cruel laws.
 
 The suffering he **had inflicted** on them was immeasurable.
 
@@ -48,7 +56,7 @@ But the resistance had hidden the truth here, powered by an underground **waterm
 
 隠された部屋の中で、エリアスが見つけたのは黄金ではなく、禁じられた知識の図書館だった。
 
-考古学（Archaeology）は彼の **学問分野（academic discipline）** だったが、これに対する備えなど何ひとつ出来ていなかった。
+**考古学（Archaeology）**は彼の **学問分野（academic discipline）** だったが、これに対する備えなど何ひとつ出来ていなかった。
 
 台座の上には **独立宣言（the declaration of independence）** に似た、しかしはるかに古い文書が置かれていた。
 
