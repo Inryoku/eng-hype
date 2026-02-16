@@ -2,13 +2,13 @@
 
 ## Chapter 1: The Whistleblower
 
-[Song Title](https://suno.com/song/xxxx)
+[SThe Whistleblower](https://suno.com/s/9UCxrclrlwfqedWy)
 
 ### Scene 1: The Interview
 
 _(Target Words: The chemist found, measured out an ounce of powder, was not ethical, a ward for patients, provide networking opportunities)_
 
-![Scene Image](https://placehold.co/600x400/png)
+![The Interview](https://i.postimg.cc/rsFHpbxw/Gemini-Generated-Image-y9z6tiy9z6tiy9z6.png)
 
 Journalist: "So, you claim the company knew about the side effects?"
 
@@ -42,7 +42,7 @@ Chemist: "It **was not ethical**. They set up **a ward for patients** in a remot
 
 _(Target Words: trading with a dictatorship, the bombing campaign, The car drove off)_
 
-![Scene Image](https://placehold.co/600x400/png)
+![The Cover-up](https://i.postimg.cc/wxC4t0JR/Gemini-Generated-Image-ciafzyciafzyciaf.png)
 
 Journalist: "Why go so far? Why that specific country?"
 
