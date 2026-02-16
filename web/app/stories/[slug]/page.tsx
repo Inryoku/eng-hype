@@ -1,5 +1,5 @@
 import { getAllStories, getStory } from "@/lib/content";
-import { extractMedia } from "@/lib/markdown";
+import { parseStoryStructure } from "@/lib/markdown";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -33,16 +33,12 @@ export default async function StoryPage({
   }
 
   // Preprocess content to fix image paths
-  // Converts ../images/foo.png to /eng-hype/images/foo.png
   const rawContent = story.content.replace(
     /\.\.\/images\//g,
     "/eng-hype/images/",
   );
 
-  const { audioUrl, images, text } = extractMedia(rawContent);
-  const sunoId = audioUrl
-    ? audioUrl.match(/suno\.com\/(?:song|embed)\/([a-zA-Z0-9-]+)/)?.[1]
-    : null;
+  const { intro, chapters } = parseStoryStructure(rawContent);
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-[family-name:var(--font-lora)] selection:bg-orange-200 selection:text-orange-900">
@@ -67,126 +63,165 @@ export default async function StoryPage({
           </header>
         )}
 
-        {/* Audio Player (Full Width) */}
-        {sunoId && (
-          <div className="w-full max-w-4xl mx-auto mb-16 rounded-xl overflow-hidden shadow-lg border border-stone-200 bg-stone-900">
-            <iframe
-              src={`https://suno.com/embed/${sunoId}`}
-              width="100%"
-              height="152"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              className="w-full bg-transparent"
-            />
+        {/* Intro Section */}
+        {intro && (
+          <div className="max-w-3xl mx-auto mb-16 prose prose-xl prose-stone">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{intro}</ReactMarkdown>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left Column: Visuals (Sticky) */}
-          <div className="lg:col-span-5 h-fit lg:sticky lg:top-8 space-y-8">
-            {images.map((img, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl overflow-hidden shadow-lg shadow-stone-200 border border-stone-100 bg-stone-100"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-auto object-cover opacity-95 hover:opacity-100 transition-opacity duration-700 mix-blend-multiply"
-                />
-                {img.alt && (
-                  <div className="p-3 text-sm text-stone-500 font-sans bg-stone-50 border-t border-stone-100">
-                    {img.alt}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Chapters Loop */}
+        <div className="space-y-32">
+          {chapters.map((chapter, index) => {
+            const sunoId = chapter.audioUrl
+              ? chapter.audioUrl.match(
+                  /suno\.com\/(?:song|embed)\/([a-zA-Z0-9-]+)/,
+                )?.[1]
+              : null;
 
-          {/* Right Column: Text Content */}
-          <article className="lg:col-span-7 prose prose-xl prose-stone max-w-none prose-headings:font-bold prose-headings:text-stone-900 prose-p:text-stone-700 prose-p:leading-normal prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                // @ts-ignore
-                blockquote: ({ node, ...props }) => (
-                  <blockquote
-                    className="not-italic border-l-4 border-orange-300 pl-6 py-2 my-6 bg-orange-50 text-stone-600 font-serif text-lg leading-snug"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                strong: ({ node, ...props }) => (
-                  <strong
-                    className="text-stone-900 font-bold bg-orange-100 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                a: ({ node, ...props }) => (
-                  <a
-                    className="text-orange-700 hover:text-orange-900 underline decoration-orange-300 hover:decoration-orange-600 transition-all font-medium decoration-1 underline-offset-4"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                h1: ({ node, ...props }) => (
-                  // Render h1 invisible if it matches title to avoid duplication, or style it if used within content
-                  <h1
-                    className="text-3xl md:text-4xl font-bold mt-10 mb-6 text-stone-900 border-b border-stone-200 pb-3"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                h2: ({ node, ...props }) => (
-                  <h2
-                    className="text-2xl md:text-3xl font-bold mt-10 mb-4 text-stone-800 font-sans tracking-tight"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                h3: ({ node, ...props }) => (
-                  <h3
-                    className="text-xl md:text-2xl font-bold mt-8 mb-3 text-stone-800 font-sans"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                hr: ({ node, ...props }) => (
-                  <div className="my-10 flex items-center justify-center gap-4 opacity-30">
-                    <div className="h-px w-full bg-stone-300"></div>
-                    <div className="text-stone-400 text-xl">❦</div>
-                    <div className="h-px w-full bg-stone-300"></div>
-                  </div>
-                ),
-                // @ts-ignore
-                p: ({ node, ...props }) => (
-                  <p
-                    className="mb-6 text-stone-700 leading-normal"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                ul: ({ node, ...props }) => (
-                  <ul
-                    className="list-disc list-outside ml-6 mb-6 space-y-1 text-stone-700"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                ol: ({ node, ...props }) => (
-                  <ol
-                    className="list-decimal list-outside ml-6 mb-6 space-y-1 text-stone-700"
-                    {...props}
-                  />
-                ),
-                // @ts-ignore
-                li: ({ node, ...props }) => <li className="pl-2" {...props} />,
-              }}
-            >
-              {text}
-            </ReactMarkdown>
-          </article>
+            return (
+              <section
+                key={index}
+                className="scroll-mt-8"
+                id={`chapter-${index}`}
+              >
+                {/* Chapter Header */}
+                <div className="mb-12 text-center max-w-4xl mx-auto">
+                  <h2 className="text-3xl md:text-4xl font-bold text-stone-800 font-sans tracking-tight mb-8">
+                    {chapter.title}
+                  </h2>
+
+                  {/* Chapter Audio Player */}
+                  {sunoId && (
+                    <div className="w-full rounded-xl overflow-hidden shadow-lg border border-stone-200 bg-stone-900">
+                      <iframe
+                        src={`https://suno.com/embed/${sunoId}`}
+                        width="100%"
+                        height="152"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        className="w-full bg-transparent"
+                      />
+                    </div>
+                  )}
+
+                  {chapter.content && (
+                    <div className="mt-8 prose prose-xl prose-stone max-w-none text-left">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {chapter.content}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+
+                {/* Scenes Loop */}
+                <div className="space-y-24">
+                  {chapter.scenes.map((scene, sIndex) => (
+                    <div
+                      key={sIndex}
+                      className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
+                    >
+                      {/* Left: Image (Sticky within scene) */}
+                      <div className="lg:col-span-5 relative">
+                        <div className="lg:sticky lg:top-8">
+                          {scene.image ? (
+                            <div className="rounded-xl overflow-hidden shadow-lg shadow-stone-200 border border-stone-100 bg-stone-100">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={scene.image.src}
+                                alt={scene.image.alt || scene.title}
+                                className="w-full h-auto object-cover opacity-95 hover:opacity-100 transition-opacity duration-700 mix-blend-multiply"
+                              />
+                              {scene.image.alt && (
+                                <div className="p-3 text-sm text-stone-500 font-sans bg-stone-50 border-t border-stone-100">
+                                  {scene.image.alt}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            // Placeholder or empty if no image, but keeping column ensures alignment
+                            <div className="hidden lg:block h-32 w-full border-2 border-dashed border-stone-200 rounded-xl flex items-center justify-center text-stone-300">
+                              No Image
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right: Text */}
+                      <article className="lg:col-span-7 prose prose-xl prose-stone max-w-none prose-headings:font-bold prose-headings:text-stone-900 prose-p:text-stone-700 prose-p:leading-normal prose-p:font-serif prose-p:text-lg md:prose-p:text-xl">
+                        {scene.title && (
+                          <h3 className="text-xl md:text-2xl font-bold mb-4 text-stone-800 font-sans mt-0">
+                            {scene.title}
+                          </h3>
+                        )}
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            // Simplified components since structure is handled by outer loop
+                            // @ts-ignore
+                            blockquote: ({ node, ...props }) => (
+                              <blockquote
+                                className="not-italic border-l-4 border-orange-300 pl-6 py-2 my-6 bg-orange-50 text-stone-600 font-serif text-lg leading-snug"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            strong: ({ node, ...props }) => (
+                              <strong
+                                className="text-stone-900 font-bold bg-orange-100 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            hr: ({ node, ...props }) => (
+                              <div className="my-10 flex items-center justify-center gap-4 opacity-30">
+                                <div className="h-px w-full bg-stone-300"></div>
+                                <div className="text-stone-400 text-xl">❦</div>
+                                <div className="h-px w-full bg-stone-300"></div>
+                              </div>
+                            ),
+                            // @ts-ignore
+                            a: ({ node, ...props }) => (
+                              <a
+                                className="text-orange-700 hover:text-orange-900 underline decoration-orange-300 hover:decoration-orange-600 transition-all font-medium decoration-1 underline-offset-4"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            p: ({ node, ...props }) => (
+                              <p
+                                className="mb-6 text-stone-700 leading-normal"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            ul: ({ node, ...props }) => (
+                              <ul
+                                className="list-disc list-outside ml-6 mb-6 space-y-1 text-stone-700"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            ol: ({ node, ...props }) => (
+                              <ol
+                                className="list-decimal list-outside ml-6 mb-6 space-y-1 text-stone-700"
+                                {...props}
+                              />
+                            ),
+                            // @ts-ignore
+                            li: ({ node, ...props }) => (
+                              <li className="pl-2" {...props} />
+                            ),
+                          }}
+                        >
+                          {scene.content}
+                        </ReactMarkdown>
+                      </article>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </div>
     </div>

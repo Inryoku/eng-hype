@@ -1,42 +1,89 @@
-export interface MediaExtraction {
-  audioUrl: string | null;
-  images: { src: string; alt: string }[];
-  text: string;
+export interface Scene {
+  title: string; // e.g. "Scene 1: The Beginning"
+  image: { src: string; alt: string } | null;
+  content: string; // The text content of the scene
 }
 
-export function extractMedia(markdown: string): MediaExtraction {
-  let text = markdown;
-  let audioUrl: string | null = null;
-  const images: { src: string; alt: string }[] = [];
+export interface Chapter {
+  title: string; // e.g. "Chapter 1: The Voyage"
+  audioUrl: string | null;
+  content: string; // Intro text before the first scene
+  scenes: Scene[];
+}
 
-  // 1. Extract Suno Embed/Song Links
-  // Matches: [Title](https://suno.com/...)
-  const sunoLinkRegex =
-    /\[.*?\]\((https:\/\/suno\.com\/(?:song|embed)\/[a-zA-Z0-9-]+)\)/g;
-  let sunoMatch;
-  while ((sunoMatch = sunoLinkRegex.exec(text)) !== null) {
-    if (!audioUrl) {
-      audioUrl = sunoMatch[1]; // Take the first one found
+export interface StoryStructure {
+  intro: string; // Content before the first chapter
+  chapters: Chapter[];
+}
+
+export function parseStoryStructure(markdown: string): StoryStructure {
+  // 1. Split by "## " (Chapter)
+  // The first part is the intro (before any chapter)
+  const chapterSplits = markdown.split(/^## /m);
+  const intro = chapterSplits.shift()?.trim() || "";
+
+  const chapters = chapterSplits.map((chapterBlock) => {
+    // Extract Title (first line)
+    const titleMatch = chapterBlock.match(/^(.*)$/m);
+    const title = titleMatch ? titleMatch[1].trim() : "Untitled Chapter";
+
+    // Remove title from block to process rest
+    let content = chapterBlock.replace(/^(.*)$/m, "").trim();
+
+    // Extract Suno Link
+    const sunoLinkRegex =
+      /\[.*?\]\((https:\/\/suno\.com\/(?:song|embed)\/[a-zA-Z0-9-]+)\)/;
+    const sunoMatch = content.match(sunoLinkRegex);
+    const audioUrl = sunoMatch ? sunoMatch[1] : null;
+
+    // Remove Suno link from content
+    if (sunoMatch) {
+      content = content.replace(sunoMatch[0], "").trim();
     }
-  }
-  // Remove all suno links from text
-  text = text.replace(sunoLinkRegex, "");
 
-  // 2. Extract Images
-  // Matches: ![Alt](Src)
-  const imageRegex = /!\[(.*?)\]\((.*?)\)/g;
-  let imageMatch;
-  while ((imageMatch = imageRegex.exec(text)) !== null) {
-    images.push({
-      alt: imageMatch[1],
-      src: imageMatch[2],
+    // 2. Split by "### " (Scene)
+    // The first part is the chapter intro text
+    const sceneSplits = content.split(/^### /m);
+    const chapterIntro = sceneSplits.shift()?.trim() || "";
+
+    const scenes = sceneSplits.map((sceneBlock) => {
+      // Extract Scene Title
+      const sceneTitleMatch = sceneBlock.match(/^(.*)$/m);
+      const sceneTitle = sceneTitleMatch ? sceneTitleMatch[1].trim() : "";
+
+      let sceneContent = sceneBlock.replace(/^(.*)$/m, "").trim();
+
+      // Extract Image
+      const imageRegex = /!\[(.*?)\]\((.*?)\)/;
+      const imageMatch = sceneContent.match(imageRegex);
+      let image = null;
+
+      if (imageMatch) {
+        image = {
+          alt: imageMatch[1],
+          src: imageMatch[2],
+        };
+        // Remove image from text
+        sceneContent = sceneContent.replace(imageMatch[0], "").trim();
+      }
+
+      // Clean up extra newlines
+      sceneContent = sceneContent.replace(/\n{3,}/g, "\n\n").trim();
+
+      return {
+        title: sceneTitle,
+        image,
+        content: sceneContent,
+      };
     });
-  }
-  // Remove all images from text
-  text = text.replace(imageRegex, "");
 
-  // 3. Clean up extra newlines left behind
-  text = text.replace(/\n{3,}/g, "\n\n").trim();
+    return {
+      title,
+      audioUrl,
+      content: chapterIntro,
+      scenes,
+    };
+  });
 
-  return { audioUrl, images, text };
+  return { intro, chapters };
 }
