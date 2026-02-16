@@ -41,11 +41,11 @@ export default async function StoryPage({
   const { intro, chapters } = await parseStoryStructure(rawContent);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-lora)] selection:bg-orange-200 selection:text-orange-900 dark:selection:bg-sky-900 dark:selection:text-sky-100">
+    <div className="min-h-screen bg-background text-foreground font-[family-name:var(--font-lora)] selection:bg-orange-200 selection:text-orange-900 dark:selection:bg-cyan-900 dark:selection:text-cyan-100">
       <div className="max-w-7xl mx-auto p-4 md:p-8 lg:p-12 pb-32">
         <Link
           href="/stories"
-          className="group inline-flex items-center gap-2 text-stone-500 dark:text-slate-400 hover:text-orange-600 dark:hover:text-sky-400 mb-8 transition-colors text-sm font-sans font-medium tracking-wide"
+          className="group inline-flex items-center gap-2 text-stone-500 dark:text-slate-400 hover:text-orange-600 dark:hover:text-cyan-400 mb-8 transition-colors text-sm font-sans font-medium tracking-wide"
         >
           <span className="group-hover:-translate-x-1 transition-transform">
             ←
@@ -59,7 +59,7 @@ export default async function StoryPage({
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight pb-2">
               {story.title}
             </h1>
-            <div className="h-1 w-24 bg-orange-200 dark:bg-sky-800 mx-auto rounded-full"></div>
+            <div className="h-1 w-24 bg-orange-200 dark:bg-cyan-600 mx-auto rounded-full shadow-[0_0_10px_rgba(8,145,178,0.5)]"></div>
           </header>
         )}
 
@@ -124,7 +124,7 @@ export default async function StoryPage({
                       <div className="lg:col-span-5 relative">
                         <div className="lg:sticky lg:top-8">
                           {scene.image ? (
-                            <div className="rounded-xl overflow-hidden shadow-lg shadow-stone-200 dark:shadow-black/50 border border-stone-100 dark:border-slate-800 bg-stone-100 dark:bg-slate-900">
+                            <div className="rounded-xl overflow-hidden shadow-lg shadow-stone-200 dark:shadow-cyan-900/20 border border-stone-100 dark:border-slate-800 bg-stone-100 dark:bg-slate-900">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={scene.image.src}
@@ -160,31 +160,31 @@ export default async function StoryPage({
                             // @ts-ignore
                             blockquote: ({ node, ...props }) => (
                               <blockquote
-                                className="not-italic border-l-4 border-orange-300 dark:border-sky-700 pl-6 py-2 my-6 bg-orange-50 dark:bg-slate-900/50 text-stone-600 dark:text-slate-400 font-serif text-lg leading-snug"
+                                className="not-italic border-l-4 border-orange-300 dark:border-cyan-500 pl-6 py-2 my-6 bg-orange-50 dark:bg-cyan-950/30 text-stone-600 dark:text-cyan-100 font-serif text-lg leading-snug shadow-[inset_4px_0_0_0_rgba(6,182,212,1)]"
                                 {...props}
                               />
                             ),
                             // @ts-ignore
                             strong: ({ node, ...props }) => (
                               <strong
-                                className="text-foreground font-bold bg-orange-100 dark:bg-sky-900/40 dark:text-sky-100 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline"
+                                className="text-foreground font-bold bg-orange-100 dark:bg-cyan-900/50 dark:text-cyan-200 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline shadow-[0_0_10px_rgba(34,211,238,0.2)]"
                                 {...props}
                               />
                             ),
                             // @ts-ignore
                             hr: ({ node, ...props }) => (
-                              <div className="my-10 flex items-center justify-center gap-4 opacity-30 dark:opacity-20">
-                                <div className="h-px w-full bg-stone-300 dark:bg-slate-700"></div>
-                                <div className="text-stone-400 dark:text-slate-600 text-xl">
+                              <div className="my-10 flex items-center justify-center gap-4 opacity-30 dark:opacity-40">
+                                <div className="h-px w-full bg-stone-300 dark:bg-cyan-900"></div>
+                                <div className="text-stone-400 dark:text-cyan-600 text-xl shadow-[0_0_10px_rgba(8,145,178,0.5)]">
                                   ❦
                                 </div>
-                                <div className="h-px w-full bg-stone-300 dark:bg-slate-700"></div>
+                                <div className="h-px w-full bg-stone-300 dark:bg-cyan-900"></div>
                               </div>
                             ),
                             // @ts-ignore
                             a: ({ node, ...props }) => (
                               <a
-                                className="text-orange-700 dark:text-sky-400 hover:text-orange-900 dark:hover:text-sky-300 underline decoration-orange-300 dark:decoration-sky-700 hover:decoration-orange-600 dark:hover:decoration-sky-500 transition-all font-medium decoration-1 underline-offset-4"
+                                className="text-orange-700 dark:text-cyan-400 hover:text-orange-900 dark:hover:text-cyan-300 underline decoration-orange-300 dark:decoration-cyan-600 hover:decoration-orange-600 dark:hover:decoration-cyan-400 transition-all font-medium decoration-1 underline-offset-4 shadow-[0_1px_0_0_rgba(34,211,238,0.3)]"
                                 {...props}
                               />
                             ),
