@@ -37,6 +37,14 @@ export function getAllStories() {
         title,
         ...data,
       };
+    })
+    // Sort stories numerically by title (Story 1, Story 2, etc.)
+    .sort((a, b) => {
+      const getStoryNumber = (title: string) => {
+        const match = title.match(/Story\s+(\d+)/i);
+        return match ? parseInt(match[1], 10) : 999;
+      };
+      return getStoryNumber(a.title) - getStoryNumber(b.title);
     });
 
   return stories;
