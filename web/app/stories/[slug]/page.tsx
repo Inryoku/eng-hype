@@ -59,7 +59,7 @@ export default async function StoryPage({
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight pb-2">
               {story.title}
             </h1>
-            <div className="h-1 w-24 bg-orange-200 dark:bg-cyan-600 mx-auto rounded-full shadow-[0_0_10px_rgba(8,145,178,0.5)]"></div>
+            <div className="h-1 w-24 bg-orange-200 dark:bg-cyan-600 mx-auto rounded-full dark:shadow-[0_0_10px_rgba(8,145,178,0.5)]"></div>
           </header>
         )}
 
