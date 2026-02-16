@@ -38,7 +38,7 @@ export default async function StoryPage({
     "/eng-hype/images/",
   );
 
-  const { intro, chapters } = parseStoryStructure(rawContent);
+  const { intro, chapters } = await parseStoryStructure(rawContent);
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-[family-name:var(--font-lora)] selection:bg-orange-200 selection:text-orange-900">
