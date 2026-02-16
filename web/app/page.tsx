@@ -12,7 +12,7 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl text-stone-600 dark:text-slate-400 max-w-lg mx-auto font-light leading-relaxed">
             Your premium English learning library. <br />
-            <span className="font-medium text-orange-700 dark:text-cyan-300 bg-orange-100/60 dark:bg-cyan-900/40 px-2 py-0.5 rounded-sm shadow-[0_0_10px_rgba(34,211,238,0.3)]">
+            <span className="font-medium text-orange-700 dark:text-cyan-300 bg-orange-100/60 dark:bg-cyan-900/40 px-2 py-0.5 rounded-sm dark:shadow-[0_0_10px_rgba(34,211,238,0.3)]">
               Stories, words, and methods
             </span>{" "}
             designed for immersion.

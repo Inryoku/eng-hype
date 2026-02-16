@@ -3,6 +3,7 @@ import { parseStoryStructure } from "@/lib/markdown";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { SunoPlayer } from "@/components/SunoPlayer";
 
 export async function generateStaticParams() {
   const stories = getAllStories();
@@ -92,17 +93,7 @@ export default async function StoryPage({
                   </h2>
 
                   {/* Chapter Audio Player */}
-                  {sunoId && (
-                    <div className="w-full rounded-xl overflow-hidden shadow-lg border border-stone-200 dark:border-slate-800 bg-stone-900">
-                      <iframe
-                        src={`https://suno.com/embed/${sunoId}?theme=dark`}
-                        width="100%"
-                        height="152"
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        className="w-full bg-transparent"
-                      />
-                    </div>
-                  )}
+                  {sunoId && <SunoPlayer sunoId={sunoId} />}
 
                   {chapter.content && (
                     <div className="mt-8 prose prose-xl prose-stone dark:prose-invert max-w-none text-left">
