@@ -7,9 +7,9 @@
 }
 
 .dark {
-  /* Dark Mode (Warm Dark Stone/Brown) */
-  --background: #0c0a09; /* stone-950 */
-  --foreground: #f5f5f4; /* stone-100 */
+  /* Dark Mode (Cool Slate/Black) */
+  --background: #020617; /* slate-950 */
+  --foreground: #f1f5f9; /* slate-100 */
 }
 
 @theme inline {
