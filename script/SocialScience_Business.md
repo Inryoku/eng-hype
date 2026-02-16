@@ -40,7 +40,7 @@ Outside, the lights of the **metropolitan area** shone brightly, **indifferent t
 
 ### Scene2: The Sunken City
 
-![The Sunken City](https://i.postimg.cc/zfr4Fwx2/Gemini-Generated-Image-yri5fyri5fyri5fy.png)
+![The Sunken City](https://i.postimg.cc/PJVH56kd/Gemini-Generated-Image-ulif5rulif5rulif.png)
 
 _(Target Words: Customers for luxury goods, afford decent housing, Restless people, impulsive decisions, a seat by the aisle, lead a life, earnest attempt to, there was no indication that)_
 
@@ -58,7 +58,7 @@ He wanted to **lead a life** of quiet retirement, but he was trapped.
 
 In an **earnest attempt to** save the company, he had made a deal with foreign investors.
 
-But **there was no indication that** they would honor their promise.
+But **there was no indication that** they would **honor their promise**.
 
 ---
 
@@ -76,4 +76,4 @@ CEOは首都へ向かう飛行機に一人座り、顔を見られないよう�
 
 会社を救おうとする **真剣な試み（earnest attempt to）** として、彼は海外投資家と取引をしたのだった。
 
-しかし、彼らが約束を守るという **兆候はなかった（there was no indication that）**。
+しかし、彼らが**約束を守る（honor their promise）** という **兆候はなかった（there was no indication that）**。

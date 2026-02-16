@@ -1,5 +1,9 @@
 # Story 3: Science & Nature (The Silent Mutation)
 
+## Chapter 1: The Silent Mutation
+
+### Scene 1: The Silent Mutation
+
 _(Target Words: The use of the fertilizer, chemical waste, gardener, clinical trials, Independent experts, based on a false premise, The book’s arguments, signify)_
 
 ![Science Nature](../images/science_nature.png)

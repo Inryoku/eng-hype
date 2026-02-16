@@ -1,5 +1,9 @@
 # Story 4: Technology & Engineering (The Failed Prototype)
 
+## Chapter 1: The Failed Prototype
+
+### Scene 1: The Failed Prototype
+
 _(Target Words: industrious character, Research record, There is little prospect that, came to an abrupt halt, owed (A) to (B), was intended to, remark, was unsure of)_
 
 ![Tech Engineering](../images/tech_engineering.png)
