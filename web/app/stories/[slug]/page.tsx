@@ -167,7 +167,7 @@ export default async function StoryPage({
                             // @ts-ignore
                             strong: ({ node, ...props }) => (
                               <strong
-                                className="text-foreground font-bold bg-orange-100 dark:bg-cyan-900/50 dark:text-cyan-200 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline shadow-[0_0_10px_rgba(34,211,238,0.2)]"
+                                className="text-foreground font-bold bg-orange-100 dark:bg-cyan-900/50 dark:text-cyan-200 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline dark:shadow-[0_0_10px_rgba(34,211,238,0.2)]"
                                 {...props}
                               />
                             ),
@@ -175,7 +175,7 @@ export default async function StoryPage({
                             hr: ({ node, ...props }) => (
                               <div className="my-10 flex items-center justify-center gap-4 opacity-30 dark:opacity-40">
                                 <div className="h-px w-full bg-stone-300 dark:bg-cyan-900"></div>
-                                <div className="text-stone-400 dark:text-cyan-600 text-xl shadow-[0_0_10px_rgba(8,145,178,0.5)]">
+                                <div className="text-stone-400 dark:text-cyan-600 text-xl dark:shadow-[0_0_10px_rgba(8,145,178,0.5)]">
                                   ❦
                                 </div>
                                 <div className="h-px w-full bg-stone-300 dark:bg-cyan-900"></div>

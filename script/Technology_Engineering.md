@@ -18,11 +18,11 @@ The experiment **was intended to** revolutionize solar power storage.
 
 However, he **was unsure of** where the calculation went wrong.
 
-His **research record** was spotless until now.
+His **research record** **was spotless** until now.
 
-**There is little prospect that** the government will fund a second attempt.
+**There is little prospect that** the government will **fund a second attempt**.
 
-His closing **remark** at the press conference was somber.
+His **closing remark** at the press conference was somber.
 
 ---
 
@@ -36,8 +36,8 @@ His closing **remark** at the press conference was somber.
 
 しかし彼は、計算のどこが間違っていたのか **確信が持てなかった（was unsure of）**。
 
-彼の **研究記録（Research record）** は、今まで一点の曇りもなかったのだが。
+彼の **研究記録（Research record）** は、今まで**一点の曇りもなかった（was spotless）** だったのだ。
 
-政府が再挑戦に資金を提供する **見込みはほとんどない（There is little prospect that）**。
+政府が**再挑戦に資金を提供する（fund a second attempt）** **見込みはほとんどない（There is little prospect that）**。
 
-記者会見での彼の締めの **発言（remark）** は、重苦しいものだった。
+記者会見での彼の **締めの発言（closing remark）** は、重苦しいものだった。

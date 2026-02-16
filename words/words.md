@@ -1,5 +1,3 @@
-was intended to
-
 gymnasium
 
 given (ifの意味)

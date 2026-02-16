@@ -20,7 +20,7 @@ The company claimed their product was safe, **based on a false premise** that th
 
 They had even skipped long-term **clinical trials** to cut costs.
 
-**The book’s arguments** against the company were damning.
+**The book’s arguments** against the company **were damning**.
 
 These findings **signify** a major shift in environmental policy.
 
@@ -38,6 +38,6 @@ These findings **signify** a major shift in environmental policy.
 
 彼らはコスト削減のために、長期の **臨床試験（clinical trials）** さえ省略していたのだ。
 
-その会社に対する **本（告発本）の主張（The book’s arguments）** は、破滅的なほど説得力があった。
+その会社に対する **本（告発本）の主張（The book’s arguments）** は、**破滅的なほど説得力があった**。
 
 これらの発見は、環境政策における大きな転換を **意味する（signify）**。
