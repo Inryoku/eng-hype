@@ -1,8 +1,14 @@
-# Story 2: The Strain of Ambition (Business / Drama)
+# Story 2: Social Science & Business (The Strain of Ambition)
+
+## Chapter1: The Strain of Ambition
+
+[The Strain of Ambition](https://suno.com/s/O8fiUH4ehQRXM7QU)
+
+### Scene1: The Strain of Ambition
 
 _(Target Words: value of the shares, plunged on the news, ministry, shortage of funds, metropolitan area, consequently, collective responsibility for, cease work on)_
 
-![Business Drama](../images/business_drama.png)
+![The Strain of Ambition](https://i.postimg.cc/BQZ6MDV4/Gemini-Generated-Image-1bnlc81bnlc81bnl.png)
 
 The atmosphere in the boardroom was **suffocating**.
 
@@ -32,9 +38,13 @@ Outside, the lights of the **metropolitan area** shone brightly, **indifferent t
 
 ---
 
+### Scene2: The Sunken City
+
+![The Sunken City](https://i.postimg.cc/zfr4Fwx2/Gemini-Generated-Image-yri5fyri5fyri5fy.png)
+
 _(Target Words: Customers for luxury goods, afford decent housing, Restless people, impulsive decisions, a seat by the aisle, lead a life, earnest attempt to, there was no indication that)_
 
-The crisis deepened. **Customers for luxury goods** vanished overnight, leaving high-end retailers bankrupt.
+The crisis deepened. **Customers for luxury goods** vanished overnight, **leaving high-end retailers bankrupt**.
 
 Ordinary workers could no longer **afford decent housing** in the city center.
 
@@ -52,7 +62,7 @@ But **there was no indication that** they would honor their promise.
 
 ---
 
-危機は深刻化した。**高級品の顧客たち（Customers for luxury goods）** は一晩にして姿を消し、高級小売店は破産に追い込まれた。
+危機は深刻化した。**高級品の顧客たち（Customers for luxury goods）** は一晩にして姿を消し、**その結果、高級小売店は破産に追い込まれた（leaving high-end retailers bankrupt）**。
 
 一般の労働者たちは、もはや都心で **まともな住居を持つ余裕がなかった（afford decent housing）**。
 

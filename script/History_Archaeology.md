@@ -52,11 +52,11 @@ On a **pedestal** lay a document resembling **the declaration of independence**,
 
 It detailed **how a tyrant had ruled**, leaving **peasants squashed** under heavy taxes and cruel laws.
 
-The suffering he **had inflicted on them** was immeasurable.
+The suffering he **had inflicted on them** was **immeasurable**.
 
-Desperate to erase this history, the tyrant had ordered scribes to **renew the books**, rewriting the past to favor his reign.
+Desperate to erase this history, the tyrant had ordered **scribes** to **renew the books**, rewriting the past **to favor his reign**.
 
-But the resistance had hidden the truth here, powered by an underground **watermill** that kept the chamber dry for centuries.
+But the resistance had hidden the truth here, **powered by an underground watermill** that kept the chamber dry for centuries.
 
 ---
 
@@ -66,13 +66,13 @@ But the resistance had hidden the truth here, powered by an underground **waterm
 
 **台座（pedestal）** の上には **独立宣言（the declaration of independence）** に似た、しかしはるかに古い文書が置かれていた。
 
-そこには、**ある暴君がいかにして支配し(a tyrant had ruled)**、重税と残酷な法律の下で **農民たちを押しつぶした（peasants squashed）** かが詳細に記されていた。
+そこには、**ある暴君がいかにして支配し(how a tyrant had ruled)**、重税と残酷な法律の下で **農民たちを押しつぶした（peasants squashed）** かが詳細に記されていた。
 
-彼が **人々に与えた苦しみ(had inflicted on them)** は計り知れないものだった。
+彼が **人々に与えた(had inflicted on them)** 苦しみは **計り知れない（immeasurable）** ものだった。
 
-この歴史を消し去ることに必死だった暴君は、書記官たちに **本を新しくする（renew the books）** よう、つまり彼の治世に有利になるように過去を書き換えるよう命じていた。
+この歴史を消し去ることに必死だった暴君は、**書記官（scribes）** たちに **本を新しくする（renew the books）** よう、つまり**彼の治世に有利になるように（to favor his reign）** 過去を書き換えるよう命じていた。
 
-しかしレジスタンスは真実をここに隠していた。それは地下の **水車（watermill）** によって動力を得ており、何世紀もの間、部屋を乾燥した状態に保っていたのだ。
+しかしレジスタンスは真実をここに隠していた。それは**地下の水車によって動力を得ており（powered by an underground watermill）**、何世紀もの間、部屋を乾燥した状態に保っていたのだ。
 
 ## Chapter2: The Sunken City
 
