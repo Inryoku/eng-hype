@@ -1,6 +1,10 @@
 # Story 1: History & Archaeology (The Lost Voyage)
 
+## Chapter1: Mystery Voyage
+
 [Mystery Voyage](https://suno.com/song/cf85c29a-6028-4642-80fb-b2f3e508b50c)
+
+### Scene1: Mystery Voyage
 
 _(Target Words: dusty with age, The voyage, probe the ground for, secured, infinite, dumb with surprise)_
 
@@ -34,19 +38,21 @@ Just then, a hidden door in the floor creaked open, leaving him **dumb with surp
 
 ---
 
+### Scene2: Forbidden Knowledge
+
 _(Target Words: academic discipline, the declaration of independence, peasants squashed, had inflicted, renew the books, watermill)_
 
 ![Forbidden Knowledge](https://i.postimg.cc/MZMn7s7M/Gemini_Generated_Image_nsw4jinsw4jinsw4.png)
 
-Inside the hidden chamber, Elias found not gold, but a library of forbidden knowledge.
+Inside the hidden chamber, Elias found not gold, but a library of **forbidden knowledge**.
 
 **Archaeology** was his **academic discipline**, yet nothing had prepared him for this.
 
-On a pedestal lay a document resembling **the declaration of independence**, but far older.
+On a **pedestal** lay a document resembling **the declaration of independence**, but far older.
 
-It detailed how a tyrant had ruled, leaving **peasants squashed** under heavy taxes and cruel laws.
+It detailed **how a tyrant had ruled**, leaving **peasants squashed** under heavy taxes and cruel laws.
 
-The suffering he **had inflicted** on them was immeasurable.
+The suffering he **had inflicted on them** was immeasurable.
 
 Desperate to erase this history, the tyrant had ordered scribes to **renew the books**, rewriting the past to favor his reign.
 
@@ -54,16 +60,46 @@ But the resistance had hidden the truth here, powered by an underground **waterm
 
 ---
 
-隠された部屋の中で、エリアスが見つけたのは黄金ではなく、禁じられた知識の図書館だった。
+隠された部屋の中で、エリアスが見つけたのは黄金ではなく、**禁じられた知識（forbidden knowledge）** の図書館だった。
 
-**考古学（Archaeology）**は彼の **学問分野（academic discipline）** だったが、これに対する備えなど何ひとつ出来ていなかった。
+**考古学（Archaeology）** は彼の **学問分野（academic discipline）** だったが、これに対する備えなど何ひとつ出来ていなかった。
 
-台座の上には **独立宣言（the declaration of independence）** に似た、しかしはるかに古い文書が置かれていた。
+**台座（pedestal）** の上には **独立宣言（the declaration of independence）** に似た、しかしはるかに古い文書が置かれていた。
 
-そこには、ある暴君がいかにして支配し、重税と残酷な法律の下で **農民たちを押しつぶした（peasants squashed）** かが詳細に記されていた。
+そこには、**ある暴君がいかにして支配し(a tyrant had ruled)**、重税と残酷な法律の下で **農民たちを押しつぶした（peasants squashed）** かが詳細に記されていた。
 
-彼が人々に **与えた（had inflicted）** 苦しみは計り知れないものだった。
+彼が **人々に与えた苦しみ(had inflicted on them)** は計り知れないものだった。
 
 この歴史を消し去ることに必死だった暴君は、書記官たちに **本を新しくする（renew the books）** よう、つまり彼の治世に有利になるように過去を書き換えるよう命じていた。
 
 しかしレジスタンスは真実をここに隠していた。それは地下の **水車（watermill）** によって動力を得ており、何世紀もの間、部屋を乾燥した状態に保っていたのだ。
+
+## Chapter2: The Sunken City
+
+[The Sunken City](https://suno.com/s/RW1mL4HUheo6OqsO)
+
+### Scene1: The Sunken City
+
+_(Target Words: ...)_
+
+![The Sunken City](https://i.postimg.cc/23NRhj4T/Gemini_Generated_Image_jxsdy0jxsdy0jxsd.png)
+
+Elias and his team arrived at the coast.
+
+---
+
+エリアスと彼のチームは海岸に到着した。
+
+---
+
+### Scene2: The Sunken City
+
+_(Target Words: ...)_
+
+![The Sunken City](https://i.postimg.cc/23NRhj4T/Gemini_Generated_Image_jxsdy0jxsdy0jxsd.png)
+
+Elias and his team arrived at the coast.
+
+---
+
+エリアスと彼のチームは海岸に到着した。
