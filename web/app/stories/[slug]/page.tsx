@@ -87,13 +87,40 @@ export default async function StoryPage({
                   {...props}
                 />
               ),
-              // @ts-ignore
-              a: ({ node, ...props }) => (
-                <a
-                  className="text-orange-700 hover:text-orange-900 underline decoration-orange-300 hover:decoration-orange-600 transition-all font-medium decoration-1 underline-offset-4"
-                  {...props}
-                />
-              ),
+              a: ({ node, ...props }) => {
+                const href = props.href || "";
+                const isSuno =
+                  href.includes("suno.com/song/") ||
+                  href.includes("suno.com/embed/");
+
+                if (isSuno) {
+                  const match = href.match(
+                    /suno\.com\/(?:song|embed)\/([a-zA-Z0-9-]+)/,
+                  );
+                  const songId = match ? match[1] : null;
+
+                  if (songId) {
+                    return (
+                      <div className="my-8 rounded-xl overflow-hidden shadow-md border border-stone-200">
+                        <iframe
+                          src={`https://suno.com/embed/${songId}`}
+                          width="100%"
+                          height="152"
+                          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                          className="w-full"
+                        />
+                      </div>
+                    );
+                  }
+                }
+
+                return (
+                  <a
+                    className="text-orange-700 hover:text-orange-900 underline decoration-orange-300 hover:decoration-orange-600 transition-all font-medium decoration-1 underline-offset-4"
+                    {...props}
+                  />
+                );
+              },
               // @ts-ignore
               h1: ({ node, ...props }) => (
                 // Render h1 invisible if it matches title to avoid duplication, or style it if used within content
