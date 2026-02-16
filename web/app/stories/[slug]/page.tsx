@@ -101,7 +101,7 @@ export default async function StoryPage({
 
                   if (songId) {
                     return (
-                      <div className="my-8 rounded-xl overflow-hidden shadow-md border border-stone-200">
+                      <span className="block my-8 rounded-xl overflow-hidden shadow-md border border-stone-200">
                         <iframe
                           src={`https://suno.com/embed/${songId}`}
                           width="100%"
@@ -109,7 +109,7 @@ export default async function StoryPage({
                           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                           className="w-full"
                         />
-                      </div>
+                      </span>
                     );
                   }
                 }
