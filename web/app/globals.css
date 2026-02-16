@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
+  /* Light Mode (Existing Warm Stone) */
   --background: #fafaf9; /* stone-50 */
   --foreground: #1c1917; /* stone-900 */
+}
+
+.dark {
+  /* Dark Mode (Warm Dark Stone/Brown) */
+  --background: #0c0a09; /* stone-950 */
+  --foreground: #f5f5f4; /* stone-100 */
 }
 
 @theme inline {
