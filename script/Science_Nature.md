@@ -2,6 +2,8 @@
 
 ## Chapter 1: The Silent Mutation
 
+[The Silent Mutation](https://suno.com/s/nJYiQ5jTfnfN3CVy)
+
 ### Scene 1: The Silent Mutation
 
 _(Target Words: The use of the fertilizer, chemical waste, gardener, clinical trials, Independent experts, based on a false premise, The book’s arguments, signify)_
@@ -38,6 +40,6 @@ These findings **signify** a major shift in environmental policy.
 
 彼らはコスト削減のために、長期の **臨床試験（clinical trials）** さえ省略していたのだ。
 
-その会社に対する **本（告発本）の主張（The book’s arguments）** は、**破滅的なほど説得力があった**。
+その会社に対する **本（告発本）の主張（The book’s arguments）** は、**破滅的だった（were damning）**。
 
 これらの発見は、環境政策における大きな転換を **意味する（signify）**。

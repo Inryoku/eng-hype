@@ -2,7 +2,7 @@
 
 ## Chapter1: The Strain of Ambition
 
-[The Strain of Ambition](https://suno.com/s/O8fiUH4ehQRXM7QU)
+[The Strain of Ambition](https://suno.com/s/0k2Z1vDKszPbeHp3)
 
 ### Scene1: The Strain of Ambition
 
@@ -14,7 +14,7 @@ The atmosphere in the boardroom was **suffocating**.
 
 The **value of the shares** had **plunged on the news** of the failed **clinical trials**.
 
-The **Ministry** of Finance had already warned them about a critical **shortage of funds**, effectively cutting off their lifeline.
+The **Ministry** of Finance had already warned them about a critical **shortage of funds**, **effectively** cutting off their lifeline.
 
 Outside, the lights of the **metropolitan area** shone brightly, **indifferent to** their panic.
 
@@ -28,7 +28,7 @@ Outside, the lights of the **metropolitan area** shone brightly, **indifferent t
 
 **臨床試験(clinical trials)** 失敗の **知らせを受けて（on the news）**、**株価（value of the shares）**は**急落していた（plunged）**。
 
-財務 **省（Ministry）** はすでに彼らに深刻な **資金不足（shortage of funds）** について警告しており、事実上彼らの生命線を断ち切っていた。
+財務 **省（Ministry）** はすでに彼らに深刻な **資金不足（shortage of funds）** について警告しており、**事実上(effectively)** 彼らの生命線を断ち切っていた。
 
 外では、 **大都市圏（metropolitan area）** の明かりが、彼らのパニックなど**意に介さず(indifferent to)** 明るく輝いていた。
 

@@ -2,6 +2,8 @@
 
 ## Chapter 1: The Failed Prototype
 
+[The Failed Prototype](https://suno.com/s/CM6hc8E1l25LGuob)
+
 ### Scene 1: The Failed Prototype
 
 _(Target Words: industrious character, Research record, There is little prospect that, came to an abrupt halt, owed (A) to (B), was intended to, remark, was unsure of)_
