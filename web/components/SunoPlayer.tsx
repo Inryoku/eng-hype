@@ -1,7 +1,6 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 interface SunoPlayerProps {
   sunoId: string;
@@ -9,19 +8,6 @@ interface SunoPlayerProps {
 
 export function SunoPlayer({ sunoId }: SunoPlayerProps) {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    // Return a placeholder or skeleton
-    return (
-      <div className="w-full h-[152px] bg-stone-200 dark:bg-stone-800 animate-pulse rounded-xl" />
-    );
-  }
 
   // Suno supports theme param: ?theme=dark
   // If light mode, we can omit or explicitly check if they support theme=light

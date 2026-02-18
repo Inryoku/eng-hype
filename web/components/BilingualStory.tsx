@@ -1,11 +1,12 @@
 "use client";
+/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseEnabled } from "@/lib/supabase";
 import { contentHash } from "@/lib/hash";
 import { SunoPlayer } from "./SunoPlayer";
 
@@ -35,7 +36,6 @@ type ViewMode = "show-all" | "hide-en" | "hide-jp";
 const EnglishParagraph = ({
   node,
   viewMode,
-  userId,
   ranks,
   onRankChange,
   ...props
@@ -96,8 +96,21 @@ const EnglishParagraph = ({
         {...props}
       />
       {/* Ranking Controls - Always visible (even when hidden) */}
-      <div className="absolute -left-3 top-0 transform -translate-x-full flex flex-col gap-1 p-1 bg-white/80 dark:bg-slate-900/80 backdrop-blur rounded-lg shadow-sm border border-stone-100 dark:border-slate-800 transition-opacity duration-300 opacity-60 hover:opacity-100 z-20">
-        {[5, 4, 3, 2, 1, 0].map((r) => (
+      {/* Ranking Controls */}
+      <div
+        className="
+        md:absolute md:-left-3 md:top-0 md:transform md:-translate-x-full md:flex-col md:w-auto md:h-auto md:bg-white/80 md:dark:bg-slate-900/80 md:border md:border-stone-100 md:dark:border-slate-800 md:opacity-60 md:hover:opacity-100 md:gap-1 md:p-1 md:rounded-lg md:shadow-sm md:backdrop-blur
+        
+        flex flex-row items-center gap-3 p-1.5 rounded-lg backdrop-blur z-20 transition-all duration-300
+        
+        /* Mobile Specific */
+        relative mt-1 mb-3 w-full justify-start overflow-x-auto bg-stone-100/50 dark:bg-slate-800/50 opacity-100
+      "
+      >
+        <span className="text-[10px] text-stone-400 font-medium md:hidden mr-1">
+          Rank:
+        </span>
+        {[0, 1, 2, 3, 4, 5].map((r) => (
           <button
             key={r}
             onClick={(e) => {
@@ -105,14 +118,18 @@ const EnglishParagraph = ({
               onRankChange(id, r);
             }}
             className={cn(
-              "w-3 h-3 rounded-full border border-stone-300 dark:border-slate-600 hover:scale-125 transition-transform",
+              "w-6 h-6 md:w-3 md:h-3 rounded-full border border-stone-300 dark:border-slate-600 hover:scale-125 transition-transform flex items-center justify-center",
               rank === r
                 ? rankColors[r] +
                     " scale-110 shadow-sm ring-1 ring-stone-400 dark:ring-slate-500"
                 : "bg-stone-100 dark:bg-slate-800 opacity-50 hover:opacity-100",
             )}
             title={`Rank ${r}`}
-          />
+          >
+            <span className="md:hidden text-[10px] font-bold text-stone-600 dark:text-slate-300">
+              {r}
+            </span>
+          </button>
         ))}
       </div>
       {/* Spacer for Japanese list below */}
@@ -146,25 +163,27 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
 
   // State for ranks: { [contentHash]: rank }
   const [ranks, setRanks] = useState<Record<string, number>>({});
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
 
-  // Initialize User ID and load ranks
-  useEffect(() => {
-    // 1. Get or create userId
     let storedUserId = localStorage.getItem("eng-hype-user-id");
     if (!storedUserId) {
       storedUserId = crypto.randomUUID();
       localStorage.setItem("eng-hype-user-id", storedUserId);
     }
-    setUserId(storedUserId);
+    return storedUserId;
+  });
 
-    // 2. Fetch ranks from Supabase
-    if (storedUserId) {
+  // Initialize User ID and load ranks
+  useEffect(() => {
+    // Fetch ranks from Supabase
+    const client = supabase;
+    if (userId && client) {
       const fetchRanks = async () => {
-        const { data, error } = await supabase
+        const { data, error } = await client
           .from("sentence_ranks")
           .select("content_hash, rank")
-          .eq("user_id", storedUserId);
+          .eq("user_id", userId);
 
         if (data && !error) {
           const loadedRanks: Record<string, number> = {};
@@ -176,7 +195,7 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
       };
       fetchRanks();
     }
-  }, []);
+  }, [userId]);
 
   const handleRankChange = async (hash: string, newRank: number) => {
     if (!userId) return;
@@ -185,7 +204,10 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
     setRanks((prev) => ({ ...prev, [hash]: newRank }));
 
     // Save to Supabase
-    const { error } = await supabase.from("sentence_ranks").upsert(
+    const client = supabase;
+    if (!client) return;
+
+    const { error } = await client.from("sentence_ranks").upsert(
       {
         user_id: userId,
         content_hash: hash,
@@ -242,6 +264,11 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
           >
             Show All
           </button>
+          {!isSupabaseEnabled && (
+            <span className="hidden md:inline text-xs text-stone-500 dark:text-slate-400 px-2">
+              Offline rank mode
+            </span>
+          )}
         </div>
       </div>
 
@@ -355,7 +382,6 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
                             <EnglishParagraph
                               node={node}
                               viewMode={viewMode}
-                              userId={userId}
                               ranks={ranks}
                               onRankChange={handleRankChange}
                               {...props}

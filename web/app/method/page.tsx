@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Link from "next/link";
 import { getMethod } from "@/lib/content";
 import ReactMarkdown from "react-markdown";
