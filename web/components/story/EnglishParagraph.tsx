@@ -115,20 +115,7 @@ export const EnglishParagraph = ({
   }, [isExpanded]);
 
   return (
-    <div className="group/paragraph relative">
-      <p
-        onClick={() => {
-          if (isHidden) onRevealParagraph(id);
-        }}
-        className={cn(
-          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10",
-          isHidden
-            ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
-            : getEnglishRankStyle(rank, isHidden),
-        )}
-        {...props}
-      />
-
+    <div className="group/paragraph relative flex flex-col md:block items-start">
       {/* Capsule Slider Rank UI (Click to Expand) */}
       <div
         ref={containerRef}
@@ -137,7 +124,7 @@ export const EnglishParagraph = ({
           if (!isExpanded) setIsExpanded(true);
         }}
         className={cn(
-          "relative z-30 mt-1 inline-flex items-center md:absolute md:-left-9 md:top-1 md:mt-0",
+          "relative z-30 mb-2 inline-flex items-center md:absolute md:-left-9 md:top-1 md:mt-0 md:mb-0",
           "h-6 rounded-full shadow-sm transition-all duration-300 ease-out overflow-hidden cursor-pointer",
           isExpanded
             ? "w-auto pr-1 bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700"
@@ -187,7 +174,20 @@ export const EnglishParagraph = ({
         </div>
       </div>
 
-      <div className="h-4" />
+      <p
+        onClick={() => {
+          if (isHidden) onRevealParagraph(id);
+        }}
+        className={cn(
+          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10 w-full",
+          isHidden
+            ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
+            : getEnglishRankStyle(rank, isHidden),
+        )}
+        {...props}
+      />
+
+      <div className="h-4 md:hidden" />
     </div>
   );
 };
