@@ -1,10 +1,12 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Eye, EyeOff } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
+import { contentHash } from "@/lib/hash";
 import { SunoPlayer } from "./SunoPlayer";
 
 interface Scene {
@@ -30,9 +32,25 @@ interface BilingualStoryProps {
 type ViewMode = "show-all" | "hide-en" | "hide-jp";
 
 // Custom renderer components to use hooks properly
-const EnglishParagraph = ({ node, viewMode, ...props }: any) => {
+const EnglishParagraph = ({
+  node,
+  viewMode,
+  userId,
+  ranks,
+  onRankChange,
+  ...props
+}: any) => {
   const [isRevealed, setIsRevealed] = useState(false);
-  const [rank, setRank] = useState<number>(2); // Default 2 (Neutral/Yellow)
+
+  // Calculate hash for this paragraph content
+  const textContent = node.children
+    .map((child: any) => child.value || "")
+    .join("");
+  const id = useMemo(() => contentHash(textContent), [textContent]);
+
+  // Use rank from props (lifted state) or default to 3 (Neutral/Black)
+  const rank = ranks?.[id] !== undefined ? ranks[id] : 3;
+
   const isHidden = viewMode === "hide-en" && !isRevealed;
 
   // Rank Styles
@@ -84,7 +102,7 @@ const EnglishParagraph = ({ node, viewMode, ...props }: any) => {
             key={r}
             onClick={(e) => {
               e.stopPropagation();
-              setRank(r);
+              onRankChange(id, r);
             }}
             className={cn(
               "w-3 h-3 rounded-full border border-stone-300 dark:border-slate-600 hover:scale-125 transition-transform",
@@ -125,6 +143,64 @@ const JapaneseList = ({ node, viewMode, ...props }: any) => {
 
 export function BilingualStory({ chapters }: BilingualStoryProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("hide-en");
+
+  // State for ranks: { [contentHash]: rank }
+  const [ranks, setRanks] = useState<Record<string, number>>({});
+  const [userId, setUserId] = useState<string | null>(null);
+
+  // Initialize User ID and load ranks
+  useEffect(() => {
+    // 1. Get or create userId
+    let storedUserId = localStorage.getItem("eng-hype-user-id");
+    if (!storedUserId) {
+      storedUserId = crypto.randomUUID();
+      localStorage.setItem("eng-hype-user-id", storedUserId);
+    }
+    setUserId(storedUserId);
+
+    // 2. Fetch ranks from Supabase
+    if (storedUserId) {
+      const fetchRanks = async () => {
+        const { data, error } = await supabase
+          .from("sentence_ranks")
+          .select("content_hash, rank")
+          .eq("user_id", storedUserId);
+
+        if (data && !error) {
+          const loadedRanks: Record<string, number> = {};
+          data.forEach((row) => {
+            loadedRanks[row.content_hash] = row.rank;
+          });
+          setRanks(loadedRanks);
+        }
+      };
+      fetchRanks();
+    }
+  }, []);
+
+  const handleRankChange = async (hash: string, newRank: number) => {
+    if (!userId) return;
+
+    // Optimistic Update
+    setRanks((prev) => ({ ...prev, [hash]: newRank }));
+
+    // Save to Supabase
+    const { error } = await supabase.from("sentence_ranks").upsert(
+      {
+        user_id: userId,
+        content_hash: hash,
+        rank: newRank,
+        // updated_at is handled by default now() or trigger, but good to send if needed.
+        // Our schema has default now(), but existing rows might need explicit update if we want to track last modified time accurately on client update implies new timestamp.
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id, content_hash" },
+    );
+
+    if (error) {
+      console.error("Failed to save rank:", error);
+    }
+  };
 
   return (
     <div className="relative">
@@ -275,10 +351,15 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
                               {...props}
                             />
                           ),
-                          // Use custom components with passed viewMode
-                          // @ts-ignore
                           p: ({ node, ...props }) => (
-                            <EnglishParagraph viewMode={viewMode} {...props} />
+                            <EnglishParagraph
+                              node={node}
+                              viewMode={viewMode}
+                              userId={userId}
+                              ranks={ranks}
+                              onRankChange={handleRankChange}
+                              {...props}
+                            />
                           ),
                           // @ts-ignore
                           ul: ({ node, ...props }) => (
