@@ -1,6 +1,6 @@
 export interface Scene {
   title: string; // e.g. "Scene 1: The Beginning"
-  image: { src: string; alt: string } | null;
+  image?: { src: string; alt: string } | null;
   content: string; // The text content of the scene
 }
 
