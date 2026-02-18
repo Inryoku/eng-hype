@@ -27,7 +27,7 @@ type ParagraphElementProps = ComponentPropsWithoutRef<"p">;
 type EnglishParagraphComponentProps = EnglishParagraphProps &
   Omit<ParagraphElementProps, keyof EnglishParagraphProps>;
 
-const RANK_OPTIONS: Rank[] = [5, 4, 3, 2, 1, 0];
+const RANK_OPTIONS: Rank[] = [0, 1, 2, 3, 4, 5];
 const RANK_COLORS: Record<Rank, string> = {
   0: "bg-rose-500 border-rose-600",
   1: "bg-amber-400 border-amber-500",
@@ -45,8 +45,7 @@ function getEnglishRankStyle(rank: number, isHidden: boolean): string {
       return "font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-2 py-1 -mx-2 rounded";
     case 1:
       return "decoration-yellow-400 dark:decoration-yellow-500 underline decoration-2 underline-offset-4";
-    case 2:
-      return "text-orange-600 dark:text-orange-400 decoration-orange-300 underline decoration-2 underline-offset-4";
+    // Rank 2 (Orange) and 3 (Stone) intentionally has no text styling (neutral) as requested
     case 4:
       return "text-green-600 dark:text-green-400 font-medium";
     case 5:

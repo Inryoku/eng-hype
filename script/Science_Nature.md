@@ -32,7 +32,7 @@ Tests revealed high levels of **chemical waste** in the soil.
 
 The company claimed their product was safe, **based on a false premise** that the chemicals **would degrade naturally**.
 
-- 会社は、化学物質は**自然に分解されるだろう** という **誤った前提に基づいて**、自社製品は安全だと主張していた。
+- 会社は、自社製品は安全だと主張していた、化学物質は**自然に分解されるだろう** という **誤った前提に基づいて** 。
 
 They had even skipped long-term **clinical trials** to cut costs.
 
