@@ -32,21 +32,74 @@ type ViewMode = "show-all" | "hide-en" | "hide-jp";
 // Custom renderer components to use hooks properly
 const EnglishParagraph = ({ node, viewMode, ...props }: any) => {
   const [isRevealed, setIsRevealed] = useState(false);
+  const [rank, setRank] = useState<number>(2); // Default 2 (Neutral/Yellow)
   const isHidden = viewMode === "hide-en" && !isRevealed;
 
+  // Rank Styles
+  const getRankStyle = (r: number) => {
+    if (isHidden) return ""; // Overridden by blur
+    switch (r) {
+      case 0: // Unknown - Red
+        return "font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 px-2 py-1 -mx-2 rounded";
+      case 1: // Yellow
+        return "decoration-yellow-400 dark:decoration-yellow-500 underline decoration-2 underline-offset-4";
+      case 2: // Orange
+        return "text-orange-600 dark:text-orange-400 decoration-orange-300 underline decoration-2 underline-offset-4";
+      case 4: // Green
+        return "text-green-600 dark:text-green-400 font-medium";
+      case 5: // Mastered - Purple
+        return "text-purple-600 dark:text-purple-400 font-medium";
+      default: // 3 - Neutral (Black/Gray)
+        return "";
+    }
+  };
+
+  const rankColors = [
+    "bg-red-500 border-red-600", // 0
+    "bg-yellow-400 border-yellow-500", // 1
+    "bg-orange-500 border-orange-600", // 2
+    "bg-stone-500 border-stone-600", // 3 (Black/Neutral)
+    "bg-green-500 border-green-600", // 4
+    "bg-purple-500 border-purple-600", // 5 (Mastered)
+  ];
+
   return (
-    <p
-      onClick={() => {
-        if (isHidden) setIsRevealed(true);
-      }}
-      className={cn(
-        "mb-6 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300",
-        isHidden
-          ? "blur-[6px] opacity-40 select-none hover:blur-[4px] hover:opacity-60 cursor-pointer"
-          : "",
-      )}
-      {...props}
-    />
+    <div className="group/paragraph relative">
+      <p
+        onClick={() => {
+          if (isHidden) setIsRevealed(true);
+        }}
+        className={cn(
+          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10",
+          isHidden
+            ? "blur-[6px] opacity-40 select-none hover:blur-[4px] hover:opacity-60 cursor-pointer"
+            : getRankStyle(rank),
+        )}
+        {...props}
+      />
+      {/* Ranking Controls - Always visible (even when hidden) */}
+      <div className="absolute -left-3 top-0 transform -translate-x-full flex flex-col gap-1 p-1 bg-white/80 dark:bg-slate-900/80 backdrop-blur rounded-lg shadow-sm border border-stone-100 dark:border-slate-800 transition-opacity duration-300 opacity-60 hover:opacity-100 z-20">
+        {[5, 4, 3, 2, 1, 0].map((r) => (
+          <button
+            key={r}
+            onClick={(e) => {
+              e.stopPropagation();
+              setRank(r);
+            }}
+            className={cn(
+              "w-3 h-3 rounded-full border border-stone-300 dark:border-slate-600 hover:scale-125 transition-transform",
+              rank === r
+                ? rankColors[r] +
+                    " scale-110 shadow-sm ring-1 ring-stone-400 dark:ring-slate-500"
+                : "bg-stone-100 dark:bg-slate-800 opacity-50 hover:opacity-100",
+            )}
+            title={`Rank ${r}`}
+          />
+        ))}
+      </div>
+      {/* Spacer for Japanese list below */}
+      <div className="h-4" />
+    </div>
   );
 };
 
