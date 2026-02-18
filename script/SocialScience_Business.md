@@ -12,27 +12,27 @@ _(Target Words: value of the shares, plunged on the news, ministry, shortage of 
 
 The atmosphere in the boardroom was **suffocating**.
 
-- 会議室の空気は**息が詰まるようだった（suffocating）**。
+- 会議室の空気は**息が詰まるようだった**。
 
 The **value of the shares** had **plunged on the news** of the failed **clinical trials**.
 
-- **臨床試験(clinical trials)** 失敗の **知らせを受けて（on the news）**、**株価（value of the shares）**は**急落していた（plunged）**。
+- **臨床試験** 失敗の **知らせを受けて**、**株価**は**急落していた**。
 
 The **Ministry** of Finance had already warned them about a critical **shortage of funds**, **effectively** cutting off their lifeline.
 
-- 財務 **省（Ministry）** はすでに彼らに深刻な **資金不足（shortage of funds）** について警告しており、**事実上(effectively)** 彼らの生命線を断ち切っていた。
+- 財務 **省** はすでに彼らに深刻な **資金不足** について警告しており、**事実上** 彼らの生命線を断ち切っていた。
 
 Outside, the lights of the **metropolitan area** shone brightly, **indifferent to** their panic
 
-- 外では、 **大都市圏（metropolitan area）** の明かりが、彼らのパニックなど**意に介さず(indifferent to)** 明るく輝いていた。
+- 外では、 **大都市圏** の明かりが、彼らのパニックなど**意に介さず** 明るく輝いていた。
 
 **Consequently**, the board decided they **had no choice but to** **cease work on** the new project.
 
-- **その結果（Consequently）**、取締役会は新規プロジェクト **への取り組みを中止する（cease work on）** **以外に選択肢はない（had no choice but to）** と決断した。
+- **その結果**、取締役会は新規プロジェクト **への取り組みを中止する** **以外に選択肢はない** と決断した。
 
 "We must take **collective responsibility for** this," the CEO said, his voice trembling.
 
-- 「我々はこれに対して **連帯責任を取ら（take collective responsibility for）** なければならない」とCEOは震える声で言った。
+- 「我々はこれに対して **連帯責任を取ら** なければならない」とCEOは震える声で言った。
 
 ---
 
@@ -44,34 +44,34 @@ _(Target Words: Customers for luxury goods, afford decent housing, Restless peop
 
 The crisis deepened. **Customers for luxury goods** vanished overnight, **leaving high-end retailers bankrupt**.
 
-- 危機は深刻化した。**高級品の顧客たち（Customers for luxury goods）** は一晩にして姿を消し、**その結果、高級小売店は破産に追い込まれた（leaving high-end retailers bankrupt）**。
+- 危機は深刻化した。**高級品の顧客たち** は一晩にして姿を消し、**その結果、高級小売店は破産に追い込まれた**。
 
 Ordinary workers could no longer **afford decent housing** in the city center.
 
-- 一般の労働者たちは、もはや都心で **まともな住居を持つ余裕がなかった（afford decent housing）**。
+- 一般の労働者たちは、もはや都心で **まともな住居を持つ余裕がなかった**。
 
 **Restless people** gathered in the streets, demanding answers.
 
-- **落ち着きのない人々（Restless people）** が通りに集まり、説明を求めた。
+- **落ち着きのない人々** が通りに集まり、説明を求めた。
 
 The board knew that **impulsive decisions** would only make things worse.
 
-- 取締役会は、**衝動的な決断（impulsive decisions）** が事態を悪化させるだけだと知っていた。
+- 取締役会は、**衝動的な決断** が事態を悪化させるだけだと知っていた。
 
 The CEO sat alone on a flight to the capital, choosing **a seat by the aisle** to avoid being recognized.
 
-- CEOは首都へ向かう飛行機に一人座り、顔を見られないように **通路側の席（a seat by the aisle）** を選んだ。
+- CEOは首都へ向かう飛行機に一人座り、顔を見られないように **通路側の席** を選んだ。
 
 He wanted to **lead a life** of quiet retirement, but he was trapped.
 
-- 彼は静かな引退 **生活を送る（lead a life）** ことを望んでいたが、罠に嵌っていた。
+- 彼は静かな引退 **生活を送る** ことを望んでいたが、罠に嵌っていた。
 
 In an **earnest attempt to** save the company, he had made a deal with foreign investors.
 
-- 会社を救うための **真剣な試み（earnest attempt to）** として、彼は海外投資家と取引をしたのだった。
+- 会社を救うための **真剣な試み** として、彼は海外投資家と取引をしたのだった。
 
 But **there was no indication that** they would **honor their promise**.
 
-- しかし、彼らが **約束を守る（honor their promise）** という **兆候はなかった（there was no indication that）**。
+- しかし、彼らが **約束を守る** という **兆候はなかった**。
 
 ---
