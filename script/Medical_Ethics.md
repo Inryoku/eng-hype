@@ -32,6 +32,8 @@ Journalist: "And the testing?"
 
 Chemist: "It **was not ethical**. They set up **a ward for patients** in a remote village, where no one would ask questions."
 
+- それは **倫理的ではなかった（was not ethical）**。彼らは **患者のための病棟（a ward for patients）** を人里離れた村に設置したんだ。誰も質問などしないような場所にね。
+
 ---
 
 ジャーナリスト: 「つまり、会社は副作用について知っていたと主張するんですね？」
