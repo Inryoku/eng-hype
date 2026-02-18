@@ -16,7 +16,7 @@ Elias stood in the center of the abandoned library.
 
 The air was thick, and every surface was **dusty with age**.
 
-- 空気は澱み、あらゆる場所が **長い年月で埃っぽく** なっていた。
+- 空気は澱み、あらゆる表面が **長い年月で埃っぽく** なっていた。
 
 He pulled a heavy leather-bound book from the shelf; its title was simply "**The voyage**".
 

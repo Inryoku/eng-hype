@@ -3,10 +3,101 @@ import {
   useMemo,
   useEffect,
   useRef,
+  useCallback,
   type ComponentPropsWithoutRef,
 } from "react";
 import { cn } from "@/lib/utils";
 import { contentHash } from "@/lib/hash";
+import { Volume2, Loader2, Square } from "lucide-react";
+
+// Simple TTS Hook
+function useTTS() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const stop = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsPlaying(false);
+  }, []);
+
+  const play = useCallback(
+    async (text: string, provider: "openai" | "gemini" = "openai") => {
+      try {
+        stop(); // Stop any current playback
+        setIsLoading(true);
+
+        const response = await fetch("/api/tts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text, provider }),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`TTS Request failed: ${response.status} ${errText}`);
+        }
+
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+
+        audio.onended = () => {
+          setIsPlaying(false);
+          URL.revokeObjectURL(url);
+        };
+
+        audio.onerror = () => {
+          setIsPlaying(false);
+          setIsLoading(false);
+          URL.revokeObjectURL(url);
+        };
+
+        audioRef.current = audio;
+        await audio.play();
+        setIsLoading(false);
+        setIsPlaying(true);
+      } catch (error) {
+        console.error("TTS Error:", error);
+        setIsLoading(false);
+        setIsPlaying(false);
+      }
+    },
+    [stop],
+  );
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+
+  return { play, stop, isPlaying, isLoading };
+}
+
+function extractText(node: unknown, emphatic = false): string {
+  if (!node || typeof node !== "object") return "";
+  const n = node as { type?: string; value?: string; children?: unknown[] };
+
+  // Text leaf node
+  if (n.type === "text" && typeof n.value === "string") {
+    return emphatic ? n.value.toUpperCase() : n.value;
+  }
+
+  if (!Array.isArray(n.children)) return "";
+
+  // If this node is a "strong" (bold), mark children as emphatic
+  const isStrong = n.type === "strong";
+  return n.children
+    .map((child) => extractText(child, emphatic || isStrong))
+    .join("");
+}
 
 type Rank = 0 | 1 | 2 | 3 | 4 | 5;
 type ViewMode = "show-all" | "hide-en" | "hide-jp";
@@ -83,6 +174,8 @@ export const EnglishParagraph = ({
 }: EnglishParagraphComponentProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { play, stop, isPlaying, isLoading } = useTTS();
+  const [ttsProvider, setTtsProvider] = useState<"openai" | "gemini">("openai");
 
   const id = useMemo(() => getParagraphId(node), [node]);
   // Ensure rank is a valid Rank type (0-5), fallback to 3
@@ -179,13 +272,56 @@ export const EnglishParagraph = ({
           if (isHidden) onRevealParagraph(id);
         }}
         className={cn(
-          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10 w-full",
+          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10 w-full pr-8",
           isHidden
             ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
             : getEnglishRankStyle(rank, isHidden),
         )}
         {...props}
       />
+
+      {/* TTS Controls */}
+      {!isHidden && (
+        <div className="absolute -right-2 top-0 flex items-center gap-0.5 z-20">
+          {/* Provider Toggle */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setTtsProvider((p) => (p === "openai" ? "gemini" : "openai"));
+            }}
+            className="p-1 text-[10px] font-bold rounded transition-colors"
+            style={{
+              color: ttsProvider === "openai" ? "#10a37f" : "#4285f4",
+              opacity: 0.7,
+            }}
+            title={`TTS: ${ttsProvider === "openai" ? "OpenAI" : "Gemini"} (click to switch)`}
+          >
+            {ttsProvider === "openai" ? "OAI" : "GEM"}
+          </button>
+          {/* Play/Stop Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isPlaying) {
+                stop();
+              } else {
+                const text = extractText(node);
+                if (text) play(text, ttsProvider);
+              }
+            }}
+            className="p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
+            aria-label={isPlaying ? "Stop reading" : "Read aloud"}
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : isPlaying ? (
+              <Square className="h-4 w-4 fill-current" />
+            ) : (
+              <Volume2 className="h-4 w-4" />
+            )}
+          </button>
+        </div>
+      )}
 
       <div className="h-4 md:hidden" />
     </div>
