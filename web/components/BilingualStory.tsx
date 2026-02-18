@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect, useMemo } from "react";
+import { useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Eye, EyeOff } from "lucide-react";
@@ -37,10 +38,13 @@ const EnglishParagraph = ({
   node,
   viewMode,
   ranks,
+  revealedParagraphIds,
+  onRevealParagraph,
   onRankChange,
   ...props
 }: any) => {
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const rankMenuRef = useRef<HTMLDivElement>(null);
 
   // Calculate hash for this paragraph content
   const textContent = node.children
@@ -51,7 +55,7 @@ const EnglishParagraph = ({
   // Use rank from props (lifted state) or default to 3 (Neutral/Black)
   const rank = ranks?.[id] !== undefined ? ranks[id] : 3;
 
-  const isHidden = viewMode === "hide-en" && !isRevealed;
+  const isHidden = viewMode === "hide-en" && !revealedParagraphIds?.[id];
 
   // Rank Styles
   const getRankStyle = (r: number) => {
@@ -72,65 +76,91 @@ const EnglishParagraph = ({
     }
   };
 
-  const rankColors = [
-    "bg-red-500 border-red-600", // 0
-    "bg-yellow-400 border-yellow-500", // 1
-    "bg-orange-500 border-orange-600", // 2
-    "bg-stone-500 border-stone-600", // 3 (Black/Neutral)
-    "bg-green-500 border-green-600", // 4
-    "bg-purple-500 border-purple-600", // 5 (Mastered)
-  ];
+  const rankColors: Record<number, string> = {
+    0: "bg-rose-500 border-rose-600",
+    1: "bg-amber-400 border-amber-500",
+    2: "bg-orange-500 border-orange-600",
+    3: "bg-stone-500 border-stone-600",
+    4: "bg-emerald-500 border-emerald-600",
+    5: "bg-violet-500 border-violet-600",
+  };
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (rankMenuRef.current && target && !rankMenuRef.current.contains(target)) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [isExpanded]);
 
   return (
     <div className="group/paragraph relative">
       <p
         onClick={() => {
-          if (isHidden) setIsRevealed(true);
+          if (isHidden) onRevealParagraph(id);
         }}
         className={cn(
           "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10",
           isHidden
-            ? "blur-[6px] opacity-40 select-none hover:blur-[4px] hover:opacity-60 cursor-pointer"
+            ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
             : getRankStyle(rank),
         )}
         {...props}
       />
-      {/* Ranking Controls - Always visible (even when hidden) */}
-      {/* Ranking Controls */}
+      {/* Expandable Rank Indicator */}
       <div
-        className="
-        md:absolute md:-left-3 md:top-0 md:transform md:-translate-x-full md:flex-col md:w-auto md:h-auto md:bg-white/80 md:dark:bg-slate-900/80 md:border md:border-stone-100 md:dark:border-slate-800 md:opacity-60 md:hover:opacity-100 md:gap-1 md:p-1 md:rounded-lg md:shadow-sm md:backdrop-blur
-        
-        flex flex-row items-center gap-3 p-1.5 rounded-lg backdrop-blur z-20 transition-all duration-300
-        
-        /* Mobile Specific */
-        relative mt-1 mb-3 w-full justify-start overflow-x-auto bg-stone-100/50 dark:bg-slate-800/50 opacity-100
-      "
+        ref={rankMenuRef}
+        className={cn(
+          "relative z-30 mt-1 inline-flex md:absolute md:-left-9 md:top-1 md:mt-0",
+          isExpanded && "z-40",
+        )}
       >
-        <span className="text-[10px] text-stone-400 font-medium md:hidden mr-1">
-          Rank:
-        </span>
-        {[0, 1, 2, 3, 4, 5].map((r) => (
-          <button
-            key={r}
-            onClick={(e) => {
-              e.stopPropagation();
-              onRankChange(id, r);
-            }}
-            className={cn(
-              "w-6 h-6 md:w-3 md:h-3 rounded-full border border-stone-300 dark:border-slate-600 hover:scale-125 transition-transform flex items-center justify-center",
-              rank === r
-                ? rankColors[r] +
-                    " scale-110 shadow-sm ring-1 ring-stone-400 dark:ring-slate-500"
-                : "bg-stone-100 dark:bg-slate-800 opacity-50 hover:opacity-100",
-            )}
-            title={`Rank ${r}`}
-          >
-            <span className="md:hidden text-[10px] font-bold text-stone-600 dark:text-slate-300">
-              {r}
-            </span>
-          </button>
-        ))}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
+          className={cn(
+            "h-5 w-5 md:h-4 md:w-4 rounded-full border-2 transition-all duration-200 hover:scale-110 shadow-sm",
+            rankColors[rank],
+            isExpanded && "ring-2 ring-stone-400/70 dark:ring-slate-400/70",
+          )}
+          aria-label={`Open rank options (current rank ${rank})`}
+          title={`Rank ${rank} - click to change`}
+        />
+
+        {isExpanded && (
+          <div className="absolute left-full top-1/2 ml-2 -translate-y-1/2 flex flex-row gap-1.5 rounded-xl border border-stone-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 p-1.5 shadow-xl backdrop-blur-md z-40 md:left-auto md:right-full md:ml-0 md:mr-2 md:flex-col">
+            {[5, 4, 3, 2, 1, 0].map((r) => (
+              <button
+                key={r}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRankChange(id, r);
+                  setIsExpanded(false);
+                }}
+                className={cn(
+                  "h-6 w-6 md:h-5 md:w-5 rounded-full border-2 transition-all duration-150 hover:scale-110",
+                  rank === r
+                    ? rankColors[r] + " ring-2 ring-stone-400/70 dark:ring-slate-400/70"
+                    : rankColors[r] + " opacity-40 hover:opacity-100",
+                )}
+                title={`Rank ${r}`}
+              ></button>
+            ))}
+          </div>
+        )}
       </div>
       {/* Spacer for Japanese list below */}
       <div className="h-4" />
@@ -163,6 +193,9 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
 
   // State for ranks: { [contentHash]: rank }
   const [ranks, setRanks] = useState<Record<string, number>>({});
+  const [revealedParagraphIds, setRevealedParagraphIds] = useState<
+    Record<string, boolean>
+  >({});
   const [userId] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
 
@@ -224,13 +257,22 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
     }
   };
 
+  const handleRevealParagraph = (hash: string) => {
+    setRevealedParagraphIds((prev) => ({ ...prev, [hash]: true }));
+  };
+
+  const handleViewModeChange = (mode: ViewMode) => {
+    setViewMode(mode);
+    setRevealedParagraphIds({});
+  };
+
   return (
     <div className="relative">
       {/* Floating Toggle Controls */}
       <div className="sticky top-4 z-50 flex justify-center mb-8 pointer-events-none">
         <div className="flex gap-2 p-1.5 bg-white/90 dark:bg-slate-900/90 backdrop-blur shadow-lg rounded-full border border-stone-200 dark:border-slate-700 pointer-events-auto">
           <button
-            onClick={() => setViewMode("hide-en")}
+            onClick={() => handleViewModeChange("hide-en")}
             className={cn(
               "px-4 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-2",
               viewMode === "hide-en"
@@ -242,7 +284,7 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
             Hide EN
           </button>
           <button
-            onClick={() => setViewMode("hide-jp")}
+            onClick={() => handleViewModeChange("hide-jp")}
             className={cn(
               "px-4 py-1.5 rounded-full text-sm font-medium transition-all flex items-center gap-2",
               viewMode === "hide-jp"
@@ -254,7 +296,7 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
             Hide JP
           </button>
           <button
-            onClick={() => setViewMode("show-all")}
+            onClick={() => handleViewModeChange("show-all")}
             className={cn(
               "px-4 py-1.5 rounded-full text-sm font-medium transition-all",
               viewMode === "show-all"
@@ -383,13 +425,19 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
                               node={node}
                               viewMode={viewMode}
                               ranks={ranks}
+                              revealedParagraphIds={revealedParagraphIds}
+                              onRevealParagraph={handleRevealParagraph}
                               onRankChange={handleRankChange}
                               {...props}
                             />
                           ),
                           // @ts-ignore
                           ul: ({ node, ...props }) => (
-                            <JapaneseList viewMode={viewMode} {...props} />
+                            <JapaneseList
+                              key={`jp-${viewMode}`}
+                              viewMode={viewMode}
+                              {...props}
+                            />
                           ),
                           // @ts-ignore
                           ol: ({ node, ...props }) => (
