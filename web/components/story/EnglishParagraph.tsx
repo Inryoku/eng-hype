@@ -83,11 +83,13 @@ export const EnglishParagraph = ({
   ...props
 }: EnglishParagraphComponentProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const rankMenuRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const id = useMemo(() => getParagraphId(node), [node]);
-  const rank = ranks[id] ?? 3;
-  const rankColor = RANK_COLORS[(rank in RANK_COLORS ? rank : 3) as Rank];
+  // Ensure rank is a valid Rank type (0-5), fallback to 3
+  const rawRank = ranks[id] ?? 3;
+  const rank = (rawRank >= 0 && rawRank <= 5 ? rawRank : 3) as Rank;
+
   const isHidden = viewMode === "hide-en" && !revealedParagraphIds?.[id];
 
   useEffect(() => {
@@ -96,9 +98,9 @@ export const EnglishParagraph = ({
     const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node | null;
       if (
-        rankMenuRef.current &&
+        containerRef.current &&
         target &&
-        !rankMenuRef.current.contains(target)
+        !containerRef.current.contains(target)
       ) {
         setIsExpanded(false);
       }
@@ -128,48 +130,62 @@ export const EnglishParagraph = ({
         {...props}
       />
 
+      {/* Capsule Slider Rank UI (Click to Expand) */}
       <div
-        ref={rankMenuRef}
+        ref={containerRef}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!isExpanded) setIsExpanded(true);
+        }}
         className={cn(
-          "relative z-30 mt-1 inline-flex md:absolute md:-left-9 md:top-1 md:mt-0",
-          isExpanded && "z-40",
+          "relative z-30 mt-1 inline-flex items-center md:absolute md:-left-9 md:top-1 md:mt-0",
+          "h-6 rounded-full shadow-sm transition-all duration-300 ease-out overflow-hidden cursor-pointer",
+          isExpanded
+            ? "w-auto pr-1 bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700"
+            : `w-6 hover:scale-110 border-2 ${RANK_COLORS[rank]}`,
         )}
+        title={!isExpanded ? `Current Rank: ${rank}. Click to change.` : ""}
       >
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsExpanded((prev) => !prev);
-          }}
+        {/* Current Rank Indicator (Visible only when collapsed) */}
+        <div
           className={cn(
-            "h-5 w-5 md:h-4 md:w-4 rounded-full border-2 transition-all duration-200 hover:scale-110 shadow-sm",
-            rankColor,
-            isExpanded && "ring-2 ring-stone-400/70 dark:ring-slate-400/70",
+            "absolute left-0 top-0 w-6 h-6 flex items-center justify-center pointer-events-none transition-opacity duration-200",
+            isExpanded ? "opacity-0" : "opacity-100",
           )}
-          aria-label={`Open rank options (current rank ${rank})`}
-          title={`Rank ${rank} - click to change`}
-        />
+        >
+          <div
+            className={cn(
+              "w-2.5 h-2.5 rounded-full",
+              RANK_COLORS[rank].split(" ")[0],
+            )}
+          />
+        </div>
 
-        {isExpanded && (
-          <div className="absolute left-full top-1/2 ml-2 -translate-y-1/2 flex flex-row gap-1.5 rounded-xl border border-stone-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 p-1.5 shadow-xl backdrop-blur-md z-40 md:left-auto md:right-full md:ml-0 md:mr-2 md:flex-col">
-            {RANK_OPTIONS.map((r) => (
-              <button
-                key={r}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onRankChange(id, r);
-                  setIsExpanded(false);
-                }}
-                className={cn(
-                  "h-6 w-6 md:h-5 md:w-5 rounded-full border-2 transition-all duration-150 hover:scale-110",
-                  rank === r
-                    ? `${RANK_COLORS[r]} ring-2 ring-stone-400/70 dark:ring-slate-400/70`
-                    : `${RANK_COLORS[r]} opacity-40 hover:opacity-100`,
-                )}
-                title={`Rank ${r}`}
-              />
-            ))}
-          </div>
-        )}
+        {/* Retracted Rank Options (Visible when expanded) */}
+        <div
+          className={cn(
+            "flex items-center gap-1 px-1 transition-opacity duration-200 delay-75",
+            isExpanded ? "opacity-100" : "opacity-0 pointer-events-none",
+          )}
+        >
+          {RANK_OPTIONS.map((r) => (
+            <button
+              key={r}
+              onClick={(e) => {
+                e.stopPropagation();
+                onRankChange(id, r);
+                setIsExpanded(false);
+              }}
+              className={cn(
+                "w-4 h-4 rounded-full transition-all duration-150 active:scale-95",
+                rank === r
+                  ? `${RANK_COLORS[r]} ring-1 ring-stone-400/70 dark:ring-slate-400/70 scale-110`
+                  : `${RANK_COLORS[r]} opacity-40 hover:opacity-100 hover:scale-125`,
+              )}
+              title={`Rank ${r}`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="h-4" />

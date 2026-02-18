@@ -28,11 +28,11 @@ They suspected **the use of the fertilizer** produced by the nearby factory was 
 
 Tests revealed high levels of **chemical waste** in the soil.
 
-- 検査の結果、土壌から高濃度の **化学廃棄物** が検出された。
+- 検査は、土の中の高濃度の **化学廃棄物** を明らかにした。
 
 The company claimed their product was safe, **based on a false premise** that the chemicals **would degrade naturally**.
 
-- 会社側は、化学物質は**自然に分解されるだろう** という **誤った前提に基づいて**、自社製品は安全だと主張していた。
+- 会社は、化学物質は**自然に分解されるだろう** という **誤った前提に基づいて**、自社製品は安全だと主張していた。
 
 They had even skipped long-term **clinical trials** to cut costs.
 
