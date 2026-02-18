@@ -58,7 +58,7 @@ export default function StoriesPage() {
               href={`/stories/${story.slug}`}
               className="block p-6 md:p-8 bg-white dark:bg-slate-900 border border-stone-200 dark:border-slate-800 rounded-xl hover:border-orange-400 dark:hover:border-sky-500 transition-all hover:bg-stone-50 dark:hover:bg-slate-900/70 group shadow-sm hover:shadow-lg hover:shadow-orange-500/5 dark:hover:shadow-sky-500/10 relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+              <div className="absolute top-1/2 -translate-y-1/2 right-4 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <span className="text-6xl font-serif text-orange-900 dark:text-sky-200">
                   ❦
                 </span>
