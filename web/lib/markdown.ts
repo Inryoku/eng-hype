@@ -6,7 +6,7 @@ export interface Scene {
 
 export interface Chapter {
   title: string; // e.g. "Chapter 1: The Voyage"
-  audioUrl: string | null;
+  audioUrl?: string;
   content: string; // Intro text before the first scene
   scenes: Scene[];
 }
@@ -42,7 +42,7 @@ export async function parseStoryStructure(
       const sunoLinkRegex =
         /\[.*?\]\((https:\/\/suno\.com\/(?:song|embed|s)\/[a-zA-Z0-9-]+)\)/;
       const sunoMatch = content.match(sunoLinkRegex);
-      let audioUrl = sunoMatch ? sunoMatch[1] : null;
+      let audioUrl: string | undefined = sunoMatch ? sunoMatch[1] : undefined;
 
       // If it's a short link, resolve it to get the UUID
       if (audioUrl && audioUrl.includes("/s/")) {
@@ -79,7 +79,7 @@ export async function parseStoryStructure(
         // Extract Image
         const imageRegex = /!\[(.*?)\]\((.*?)\)/;
         const imageMatch = sceneContent.match(imageRegex);
-        let image = null;
+        let image: { src: string; alt: string } | undefined = undefined;
 
         if (imageMatch) {
           image = {
