@@ -32,6 +32,9 @@ interface BilingualStoryProps {
 }
 
 type ViewMode = "show-all" | "hide-en" | "hide-jp";
+const DEFAULT_SHARED_UID = "eng-hype-shared-user";
+const SHARED_UID =
+  process.env.NEXT_PUBLIC_SHARED_UID?.trim() || DEFAULT_SHARED_UID;
 
 // Custom renderer components to use hooks properly
 const EnglishParagraph = ({
@@ -196,22 +199,13 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
   const [revealedParagraphIds, setRevealedParagraphIds] = useState<
     Record<string, boolean>
   >({});
-  const [userId] = useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-
-    let storedUserId = localStorage.getItem("eng-hype-user-id");
-    if (!storedUserId) {
-      storedUserId = crypto.randomUUID();
-      localStorage.setItem("eng-hype-user-id", storedUserId);
-    }
-    return storedUserId;
-  });
+  const [userId] = useState<string>(SHARED_UID);
 
   // Initialize User ID and load ranks
   useEffect(() => {
     // Fetch ranks from Supabase
     const client = supabase;
-    if (userId && client) {
+    if (client) {
       const fetchRanks = async () => {
         const { data, error } = await client
           .from("sentence_ranks")
@@ -231,8 +225,6 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
   }, [userId]);
 
   const handleRankChange = async (hash: string, newRank: number) => {
-    if (!userId) return;
-
     // Optimistic Update
     setRanks((prev) => ({ ...prev, [hash]: newRank }));
 
