@@ -14,7 +14,7 @@ interface Scene {
   image?: {
     src: string;
     alt?: string;
-  };
+  } | null;
   content: string;
 }
 
