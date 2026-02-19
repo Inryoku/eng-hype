@@ -25,23 +25,56 @@ function useTTS() {
   }, []);
 
   const play = useCallback(
-    async (text: string, provider: "openai" | "gemini" = "openai") => {
+    async (text: string) => {
       try {
         stop(); // Stop any current playback
         setIsLoading(true);
 
-        const response = await fetch("/api/tts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text, provider }),
-        });
+        const cacheKey = `/api/tts?text=${encodeURIComponent(text)}`;
+        let blob: Blob | null = null;
 
-        if (!response.ok) {
-          const errText = await response.text();
-          throw new Error(`TTS Request failed: ${response.status} ${errText}`);
+        // 1. Try to get from cache
+        try {
+          const cache = await caches.open("tts-cache");
+          const cachedResponse = await cache.match(cacheKey);
+
+          if (cachedResponse) {
+            blob = await cachedResponse.blob();
+          }
+        } catch (e) {
+          console.warn("Cache API not supported or error:", e);
         }
 
-        const blob = await response.blob();
+        // 2. If not in cache, fetch from API
+        if (!blob) {
+          const response = await fetch("/api/tts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+          });
+
+          if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(
+              `TTS Request failed: ${response.status} ${errText}`,
+            );
+          }
+
+          blob = await response.blob();
+
+          // 3. Save to cache (if possible)
+          try {
+            const cache = await caches.open("tts-cache");
+            const responseToCache = new Response(blob, {
+              status: 200,
+              headers: { "Content-Type": "audio/mpeg" },
+            });
+            await cache.put(cacheKey, responseToCache);
+          } catch (e) {
+            console.warn("Failed to cache TTS response:", e);
+          }
+        }
+
         const url = URL.createObjectURL(blob);
         const audio = new Audio(url);
 
@@ -175,7 +208,6 @@ export const EnglishParagraph = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { play, stop, isPlaying, isLoading } = useTTS();
-  const [ttsProvider, setTtsProvider] = useState<"openai" | "gemini">("openai");
 
   const id = useMemo(() => getParagraphId(node), [node]);
   // Ensure rank is a valid Rank type (0-5), fallback to 3
@@ -280,47 +312,30 @@ export const EnglishParagraph = ({
         {...props}
       />
 
-      {/* TTS Controls */}
+      {/* TTS Play Button */}
       {!isHidden && (
-        <div className="absolute -right-2 top-0 flex items-center gap-0.5 z-20">
-          {/* Provider Toggle */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setTtsProvider((p) => (p === "openai" ? "gemini" : "openai"));
-            }}
-            className="p-1 text-[10px] font-bold rounded transition-colors"
-            style={{
-              color: ttsProvider === "openai" ? "#10a37f" : "#4285f4",
-              opacity: 0.7,
-            }}
-            title={`TTS: ${ttsProvider === "openai" ? "OpenAI" : "Gemini"} (click to switch)`}
-          >
-            {ttsProvider === "openai" ? "OAI" : "GEM"}
-          </button>
-          {/* Play/Stop Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (isPlaying) {
-                stop();
-              } else {
-                const text = extractText(node);
-                if (text) play(text, ttsProvider);
-              }
-            }}
-            className="p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
-            aria-label={isPlaying ? "Stop reading" : "Read aloud"}
-          >
-            {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : isPlaying ? (
-              <Square className="h-4 w-4 fill-current" />
-            ) : (
-              <Volume2 className="h-4 w-4" />
-            )}
-          </button>
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+              stop();
+            } else {
+              // Extract text content safely
+              const text = extractText(node);
+              if (text) play(text);
+            }
+          }}
+          className="absolute -right-2 top-0 p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors z-20"
+          aria-label={isPlaying ? "Stop reading" : "Read aloud"}
+        >
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : isPlaying ? (
+            <Square className="h-4 w-4 fill-current" />
+          ) : (
+            <Volume2 className="h-4 w-4" />
+          )}
+        </button>
       )}
 
       <div className="h-4 md:hidden" />
