@@ -71,6 +71,15 @@ export default function Home() {
           </Link>
         </div>
       </main>
+
+      <footer className="absolute bottom-4 left-0 right-0 text-center py-4 z-20">
+        <Link
+          href="/licenses"
+          className="text-sm text-stone-400 dark:text-slate-600 hover:text-stone-600 dark:hover:text-slate-400 transition-colors"
+        >
+          Licenses & Credits
+        </Link>
+      </footer>
     </div>
   );
 }
