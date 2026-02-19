@@ -4,7 +4,8 @@ import { contentHash } from "@/lib/hash";
 
 const MAX_TTS_TEXT_LENGTH = 1000;
 // Allow most characters, but block non-printable control chars (except tab/newline/carriage return).
-const DISALLOWED_CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/;
+const DISALLOWED_CONTROL_CHARS =
+  /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/;
 
 export async function POST(req: NextRequest) {
   try {
@@ -46,10 +47,12 @@ export async function POST(req: NextRequest) {
     }
 
     // --- 1. Check Supabase Storage Cache ---
+    // --- 1. Check Supabase Storage Cache ---
     let cacheKey = "";
     if (isSupabaseServerEnabled && supabaseServer) {
       try {
-        cacheKey = `${contentHash(normalizedText)}.mp3`;
+        // Append speed to cache key (e.g., hash_0.9.mp3)
+        cacheKey = `${contentHash(normalizedText)}_0.9.mp3`;
         const { data, error } = await supabaseServer.storage
           .from("tts-cache")
           .download(cacheKey);
@@ -82,6 +85,7 @@ export async function POST(req: NextRequest) {
         model: "tts-1",
         input: normalizedText,
         voice: "nova", // Options: alloy, echo, fable, onyx, nova, shimmer
+        speed: 0.9, // Slightly slower speed
       }),
     });
 
