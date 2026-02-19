@@ -7,6 +7,17 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, "../.env.local") });
 
+function getJstDateKey(timestamp) {
+  if (!timestamp) return null;
+
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return null;
+
+  return new Date(date.getTime() + 9 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
+}
+
 async function clearCache() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -43,10 +54,44 @@ async function clearCache() {
       return;
     }
 
-    const filePaths = files.map((f) => f.name);
-    console.log(`   Found ${filePaths.length} files to delete.`);
+    // 2. Filter files to delete (Keep "today's" files)
+    const now = new Date();
+    // Convert to JST date string (YYYY-MM-DD)
+    const todayJST = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+      .toISOString()
+      .split("T")[0];
 
-    // 2. Delete files
+    console.log(`   Keeping files created on or after: ${todayJST} (JST)`);
+
+    const filePaths = files
+      .filter((f) => {
+        // created_at / updated_at should be UTC ISO strings, but guard invalid values.
+        const fileDateJST = getJstDateKey(f.created_at || f.updated_at);
+
+        if (!fileDateJST) {
+          console.warn(
+            `   Skipping deletion for '${f.name}' due to invalid timestamp.`,
+          );
+          return false;
+        }
+
+        // If from today, KEEP (return false to filter out from deletion list)
+        if (fileDateJST === todayJST) {
+          return false;
+        }
+        // If older, DELETE
+        return true;
+      })
+      .map((f) => f.name);
+
+    if (filePaths.length === 0) {
+      console.log("   No old files to delete (all are from today).");
+      return;
+    }
+
+    console.log(`   Found ${filePaths.length} old files to delete.`);
+
+    // 3. Delete files
     const { error: deleteError } = await supabase.storage
       .from(BUCKET_NAME)
       .remove(filePaths);
@@ -54,7 +99,7 @@ async function clearCache() {
     if (deleteError) {
       console.error("❌ Failed to delete files:", deleteError.message);
     } else {
-      console.log("✅ Cache cleared successfully.");
+      console.log("✅ Old cache cleared successfully.");
     }
   } catch (err) {
     console.error("❌ Unexpected error clearing cache:", err);
