@@ -154,7 +154,7 @@ type EnglishParagraphComponentProps = EnglishParagraphProps &
 const RANK_OPTIONS: Rank[] = [0, 1, 2, 3, 4, 5];
 const RANK_COLORS: Record<Rank, string> = {
   0: "bg-rose-700/50 border-rose-800/40",
-  1: "bg-amber-600/50 border-amber-700/40",
+  1: "bg-yellow-400/60 border-yellow-500/50",
   2: "bg-orange-600/50 border-orange-700/40",
   3: "bg-stone-500/50 border-stone-600/40",
   4: "bg-emerald-700/50 border-emerald-800/40",
