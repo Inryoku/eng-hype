@@ -3,116 +3,15 @@ import {
   useMemo,
   useEffect,
   useRef,
-  useCallback,
   type ComponentPropsWithoutRef,
 } from "react";
 import { cn } from "@/lib/utils";
 import { contentHash } from "@/lib/hash";
 import { Volume2, Loader2, Square } from "lucide-react";
 
-// Simple TTS Hook
-function useTTS() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+// Simple TTS Hook removed (moved to context)
 
-  const stop = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    setIsPlaying(false);
-  }, []);
-
-  const play = useCallback(
-    async (text: string) => {
-      try {
-        stop(); // Stop any current playback
-        setIsLoading(true);
-
-        const cacheKey = `/api/tts?text=${encodeURIComponent(text)}`;
-        let blob: Blob | null = null;
-
-        // 1. Try to get from cache
-        try {
-          const cache = await caches.open("tts-cache");
-          const cachedResponse = await cache.match(cacheKey);
-
-          if (cachedResponse) {
-            blob = await cachedResponse.blob();
-          }
-        } catch (e) {
-          console.warn("Cache API not supported or error:", e);
-        }
-
-        // 2. If not in cache, fetch from API
-        if (!blob) {
-          const response = await fetch("/api/tts", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text }),
-          });
-
-          if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(
-              `TTS Request failed: ${response.status} ${errText}`,
-            );
-          }
-
-          blob = await response.blob();
-
-          // 3. Save to cache (if possible)
-          try {
-            const cache = await caches.open("tts-cache");
-            const responseToCache = new Response(blob, {
-              status: 200,
-              headers: { "Content-Type": "audio/mpeg" },
-            });
-            await cache.put(cacheKey, responseToCache);
-          } catch (e) {
-            console.warn("Failed to cache TTS response:", e);
-          }
-        }
-
-        const url = URL.createObjectURL(blob);
-        const audio = new Audio(url);
-
-        audio.onended = () => {
-          setIsPlaying(false);
-          URL.revokeObjectURL(url);
-        };
-
-        audio.onerror = () => {
-          setIsPlaying(false);
-          setIsLoading(false);
-          URL.revokeObjectURL(url);
-        };
-
-        audioRef.current = audio;
-        await audio.play();
-        setIsLoading(false);
-        setIsPlaying(true);
-      } catch (error) {
-        console.error("TTS Error:", error);
-        setIsLoading(false);
-        setIsPlaying(false);
-      }
-    },
-    [stop],
-  );
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, []);
-
-  return { play, stop, isPlaying, isLoading };
-}
+import { useTTS } from "@/components/TTSContext";
 
 function extractText(node: unknown, emphatic = false): string {
   if (!node || typeof node !== "object") return "";
@@ -207,7 +106,22 @@ export const EnglishParagraph = ({
 }: EnglishParagraphComponentProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { play, stop, isPlaying, isLoading } = useTTS();
+
+  // Use global TTS context
+  const {
+    play,
+    stop,
+    isPlaying: isGlobalPlaying,
+    isLoading: isGlobalLoading,
+    activeText,
+  } = useTTS();
+
+  // Extract text for this paragraph
+  const text = useMemo(() => extractText(node), [node]);
+
+  // Determine if this specific paragraph is playing
+  const isMePlaying = isGlobalPlaying && activeText === text;
+  const isMeLoading = isGlobalLoading && activeText === text;
 
   const id = useMemo(() => getParagraphId(node), [node]);
   // Ensure rank is a valid Rank type (0-5), fallback to 3
@@ -310,20 +224,18 @@ export const EnglishParagraph = ({
         <button
           onClick={(e) => {
             e.stopPropagation();
-            if (isPlaying) {
+            if (isMePlaying) {
               stop();
             } else {
-              // Extract text content safely
-              const text = extractText(node);
               if (text) play(text);
             }
           }}
           className="absolute -right-2 top-0 p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors z-20"
-          aria-label={isPlaying ? "Stop reading" : "Read aloud"}
+          aria-label={isMePlaying ? "Stop reading" : "Read aloud"}
         >
-          {isLoading ? (
+          {isMeLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
-          ) : isPlaying ? (
+          ) : isMePlaying ? (
             <Square className="h-4 w-4 fill-current" />
           ) : (
             <Volume2 className="h-4 w-4" />
