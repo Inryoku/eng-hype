@@ -7,6 +7,7 @@ export interface Scene {
 export interface Chapter {
   title: string; // e.g. "Chapter 1: The Voyage"
   audioUrl?: string;
+  sunoId?: string; // Extracted ID for embedding
   content: string; // Intro text before the first scene
   scenes: Scene[];
 }
@@ -59,6 +60,14 @@ export async function parseStoryStructure(
         }
       }
 
+      // Extract ID from the final URL
+      // https://suno.com/song/UUID or https://suno.com/embed/UUID
+      let sunoId: string | undefined;
+      if (audioUrl) {
+        const parts = audioUrl.split("/");
+        sunoId = parts[parts.length - 1];
+      }
+
       // Remove Suno link from content
       if (sunoMatch) {
         content = content.replace(sunoMatch[0], "").trim();
@@ -103,6 +112,7 @@ export async function parseStoryStructure(
       return {
         title,
         audioUrl,
+        sunoId,
         content: chapterIntro,
         scenes,
       };
