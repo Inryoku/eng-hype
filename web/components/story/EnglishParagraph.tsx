@@ -153,12 +153,12 @@ type EnglishParagraphComponentProps = EnglishParagraphProps &
 
 const RANK_OPTIONS: Rank[] = [0, 1, 2, 3, 4, 5];
 const RANK_COLORS: Record<Rank, string> = {
-  0: "bg-rose-500 border-rose-600",
-  1: "bg-amber-400 border-amber-500",
-  2: "bg-orange-500 border-orange-600",
-  3: "bg-stone-500 border-stone-600",
-  4: "bg-emerald-500 border-emerald-600",
-  5: "bg-violet-500 border-violet-600",
+  0: "bg-rose-700/50 border-rose-800/40",
+  1: "bg-amber-600/50 border-amber-700/40",
+  2: "bg-orange-600/50 border-orange-700/40",
+  3: "bg-stone-500/50 border-stone-600/40",
+  4: "bg-emerald-700/50 border-emerald-800/40",
+  5: "bg-violet-700/50 border-violet-800/40",
 };
 
 function getEnglishRankStyle(rank: number, isHidden: boolean): string {
@@ -260,17 +260,10 @@ export const EnglishParagraph = ({
         {/* Current Rank Indicator (Visible only when collapsed) */}
         <div
           className={cn(
-            "absolute left-0 top-0 w-6 h-6 flex items-center justify-center pointer-events-none transition-opacity duration-200",
+            "absolute left-0 top-0 w-6 h-6 rounded-full pointer-events-none transition-opacity duration-200",
             isExpanded ? "opacity-0" : "opacity-100",
           )}
-        >
-          <div
-            className={cn(
-              "w-2.5 h-2.5 rounded-full",
-              RANK_COLORS[rank].split(" ")[0],
-            )}
-          />
-        </div>
+        />
 
         {/* Retracted Rank Options (Visible when expanded) */}
         <div
