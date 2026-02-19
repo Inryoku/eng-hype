@@ -16,7 +16,7 @@ The project **came to an abrupt halt** when the prototype exploded.
 
 The lead engineer, known for his **industrious character**, was **devastated**.
 
-- **勤勉な性格** で知られる主任エンジニアは、**打ちのめされていた**。
+- **勤勉な性格** で知られる主任エンジニアは、打ちのめされていた。
 
 He **owed** his success **to** his team's dedication, but now everything was in ruins.
 
