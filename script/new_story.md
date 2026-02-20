@@ -4,17 +4,15 @@
 
 ### Scene 1: New Scene
 
-_(Target Words: New Target Words)_
+![The Gravity Records](./new_story.png)
 
-![Tech Engineering](./new_story.png)
+Elijah finished reading **the detective story** about Valoria, a **once-thriving** industrial nation that collapsed 5000 years ago.
 
-Elijah finished reading **the detective story** about Valoria, a once-thriving industrial nation that collapsed 50 years ago.
-
-- イライジャは、50年前に崩壊したかつて繁栄した工業国家ヴァロリアについての **探偵小説** を読み終えた。
+- イライジャは、5000年前に崩壊した**かつて繁栄した** 工業国家ヴァロリアについての **探偵小説** を読み終えた。
 
 **Given** the scale of the destruction, it was hard to believe that **solar radiation** alone could cause such a collapse.
 
-- その破壊の規模 **を考慮すると**、**太陽放射** だけでそのような崩壊が引き起こされるとは信じがたかった。
+- その破壊の規模 **を考えると**、**太陽放射** だけでそのような崩壊が引き起こされるとは信じがたかった。
 
 He sat in the library, a repurposed structure that was originally a **gymnasium**.
 

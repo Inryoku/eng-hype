@@ -1,32 +1,23 @@
 # 作戦会議室：The Mystery of Valoria (仮)
 
+**ジャンル (Genre):**
+
+- Clinical Dystopian Sci-Fi
+- Sci-Fi Archaeology / Corporate Thriller
+- Camera-Eye Perspective / Archival format
+- Bleak & Clinical
+
 **現状のあらすじ:**
 
 - 主人公: イライジャ (Elijah)
 - 舞台: 旧体育館を改装した図書館
 - 背景:
-  - 50年前に崩壊した工業国家「Valoria」
+  - 5000年前に崩壊した工業国家「Valoria」
   - 「太陽放射が原因」とされるが、イライジャは疑っている
   - 外では「合併(Merger)」に反対する保守派のデモが起きている
   - 情報統制により、歴史書は改竄されている
 
 ---
-
-## アイデア出しゾーン
-
-**Q1: 「太陽放射」の嘘をどう暴く？**
-
-- `watch the solar eclipse` (日食) の日に何か起きた？
-- `books on linguistics` (言語学の本) に暗号が？
-
-**Q2: 「合併(Merger)」と「会社」の関係は？**
-
-- もしかして国家の合併じゃなくて、巨大企業の合併？
-- `The company is debating`... 黒幕企業の存在？
-- `made redundant after the merger`... イライジャの親とかが被害者？
-
-どう繋げましょうか？
-ここにアイデアを書き殴ってください！
 
 ## Geminiの役割（サポート方針）
 
@@ -37,3 +28,22 @@
 2.  **文章のリライト（事後処理）**
     - ユーザーが書いた英文を添削し、より自然で洗練された表現にする。
     - **【重要】** ユーザーの書いた「味」や「強調したいポイント」は残す。原文を全否定せず、ブラッシュアップするイメージで。
+
+---
+
+### 1. 全体設定の背景
+
+- Valoria: かつて繁栄した超大国。5000年前に崩壊。科学が歪な形で発展し、クローン人間が社会に蔓延する中、AGIが暴走し、環境要因による未知の疫病を食い止められず滅亡した。
+- Panacea BioTech: 巨大な覇権企業。クローン技術を持っている。
+- The United Republic of Aethelgard(URA): 物語の国家。現在はPanacea BioTechが支配している。
+- Birdwise：URAの首都。URAの中心地。
+- Sector V: Birdwiseの南に位置するスラム街。貧困層が住む。
+- Sector 0: Birdwiseの地下に存在するPanaceaのクローン実験用の箱庭都市。(物語に出す予定はないが、裏設定として存在する)
+
+### 2. 気をつけること
+
+- **話は繋がらなくて良い**
+- **オチは不要**
+- **全トピック網羅**
+
+---
