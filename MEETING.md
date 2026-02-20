@@ -4,7 +4,6 @@
 
 - Clinical Dystopian Sci-Fi
 - Sci-Fi Archaeology / Corporate Thriller
-- Camera-Eye Perspective / Archival format
 - Bleak & Clinical
 
 **現状のあらすじ:**
@@ -44,6 +43,7 @@
 
 - **話は繋がらなくて良い**
 - **オチは不要**
+- **話は積極的には進めない。　すぐ終わってしまうので**
 - **全トピック網羅**
 
 ---

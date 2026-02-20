@@ -1,14 +1,12 @@
-# Story 1: History & Archaeology (The Lost Voyage)
+# Story 2: History & Archaeology (The Lost Voyage)
 
-## Chapter1: Mystery Voyage
+## Chapter1: The Mystery Voyage
 
 [Mystery Voyage](https://suno.com/song/cf85c29a-6028-4642-80fb-b2f3e508b50c)
 
-### Scene1: Mystery Voyage
+### Scene1: The Mystery Voyage
 
-_(Target Words: dusty with age, The voyage, probe the ground for, secured, infinite, dumb with surprise)_
-
-![Mystery Voyage](https://i.postimg.cc/23NRhj4T/Gemini_Generated_Image_jxsdy0jxsdy0jxsd.png)
+![The Mystery Voyage](https://i.postimg.cc/23NRhj4T/Gemini_Generated_Image_jxsdy0jxsdy0jxsd.png)
 
 Elias stood in the center of the abandoned library.
 
@@ -41,8 +39,6 @@ Just then, a hidden door in the floor creaked open, leaving him **dumb with surp
 ---
 
 ### Scene2: Forbidden Knowledge
-
-_(Target Words: academic discipline, the declaration of independence, peasants squashed, had inflicted, renew the books, watermill)_
 
 ![Forbidden Knowledge](https://i.postimg.cc/MZMn7s7M/Gemini_Generated_Image_nsw4jinsw4jinsw4.png)
 
