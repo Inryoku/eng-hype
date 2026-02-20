@@ -64,8 +64,8 @@ The sheer volume of notes and data reflected the researcher's **industrious char
 
 - **その結果**、**病原体**は人々の間で急速に広まっていった。
 
-The researcher's final **remark** was chilling, but Elijah **was unsure of** the document's authenticity at the time.
+The researcher's final **remark** was chilling, but Elijah **was unsure of** the document's **authenticity** at the time.
 
-- 研究者の最後の **発言** はぞっとするものだったが、その時イライジャはその文書の真偽に **確信が持てなかった**。
+- 研究者の最後の **発言** はぞっとするものだったが、その時イライジャはその文書の**信憑性**に **確信が持てなかった**。
 
 ---
