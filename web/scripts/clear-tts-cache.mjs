@@ -54,14 +54,15 @@ async function clearCache() {
       return;
     }
 
-    // 2. Filter files to delete (Keep "today's" files)
+    // 2. Filter files to delete (Keep files within the last 7 days)
     const now = new Date();
-    // Convert to JST date string (YYYY-MM-DD)
-    const todayJST = new Date(now.getTime() + 9 * 60 * 60 * 1000)
-      .toISOString()
-      .split("T")[0];
+    // Convert to JST date string (YYYY-MM-DD) for 7 days ago
+    const thresholdDate = new Date(
+      now.getTime() - 7 * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000,
+    );
+    const thresholdJST = thresholdDate.toISOString().split("T")[0];
 
-    console.log(`   Keeping files created on or after: ${todayJST} (JST)`);
+    console.log(`   Keeping files created on or after: ${thresholdJST} (JST)`);
 
     const filePaths = files
       .filter((f) => {
@@ -75,8 +76,8 @@ async function clearCache() {
           return false;
         }
 
-        // If from today, KEEP (return false to filter out from deletion list)
-        if (fileDateJST === todayJST) {
+        // If from within 7 days, KEEP (return false to filter out from deletion list)
+        if (fileDateJST >= thresholdJST) {
           return false;
         }
         // If older, DELETE
@@ -85,7 +86,7 @@ async function clearCache() {
       .map((f) => f.name);
 
     if (filePaths.length === 0) {
-      console.log("   No old files to delete (all are from today).");
+      console.log("   No old files to delete (all are within 7 days).");
       return;
     }
 

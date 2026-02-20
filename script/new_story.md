@@ -4,7 +4,7 @@
 
 ### Scene 1: The Repurposed Library
 
-![The Repurposed Library](./new_story.png)
+![The Repurposed Library](https://i.postimg.cc/Kz6QdGqF/Gemini-Generated-Image-blg7gablg7gablg7.png)
 
 Elijah finished reading **the detective story** about Valoria, a **once-thriving** industrial nation that collapsed 5000 years ago.
 
@@ -38,7 +38,7 @@ Recently, history books had been **revised** intentionally to hide the truth.
 
 ### Scene 2: The Researcher's Log
 
-![The Researcher's Log](./new_story_2.png)
+![The Researcher's Log](https://i.postimg.cc/3RvFCMKq/Gemini-Generated-Image-hrg6whhrg6whhrg6.png)
 
 Elijah felt **the strain of** an unseen, powerful presence.
 
@@ -56,13 +56,13 @@ The sheer volume of notes and data reflected the researcher's **industrious char
 
 - 膨大な量のノートとデータが、その研究者の **勤勉な性格** を物語っていた。
 
-**The book’s arguments** clearly **signified** the onset of the plague.
+**The book’s arguments** clearly **signified** the **onset** of the plague.
 
-- **その本の主張** は、明確に疫病の始まりを **示していた**。
+- **その本の主張** は、明確に疫病の **始まり** を **示していた**。
 
-**Consequently**, the pathogen spread rapidly through the population.
+**Consequently**, **the pathogen** spread rapidly through the population.
 
-- **その結果**、病原体は人々の間で急速に広まっていった。
+- **その結果**、**病原体**は人々の間で急速に広まっていった。
 
 The researcher's final **remark** was chilling, but Elijah **was unsure of** the document's authenticity at the time.
 
