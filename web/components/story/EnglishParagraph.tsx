@@ -12,6 +12,7 @@ import { Volume2, Loader2, Square } from "lucide-react";
 // Simple TTS Hook removed (moved to context)
 
 import { useTTS } from "@/components/TTSContext";
+import { ParagraphHiddenProvider } from "./ParagraphHiddenContext";
 
 function extractText(node: unknown, emphatic = false): string {
   if (!node || typeof node !== "object") return "";
@@ -154,96 +155,98 @@ export const EnglishParagraph = ({
   }, [isExpanded]);
 
   return (
-    <div className="group/paragraph relative flex flex-col md:block items-start">
-      {/* Capsule Slider Rank UI (Click to Expand) */}
-      <div
-        ref={containerRef}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (!isExpanded) setIsExpanded(true);
-        }}
-        className={cn(
-          "relative z-30 mb-2 inline-flex items-center md:absolute md:-left-9 md:top-1 md:mt-0 md:mb-0",
-          "h-6 rounded-full shadow-sm transition-all duration-300 ease-out overflow-hidden cursor-pointer",
-          isExpanded
-            ? "w-auto pr-1 bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700"
-            : `w-6 hover:scale-110 border-2 ${RANK_COLORS[rank]}`,
-        )}
-        title={!isExpanded ? `Current Rank: ${rank}. Click to change.` : ""}
-      >
-        {/* Current Rank Indicator (Visible only when collapsed) */}
+    <ParagraphHiddenProvider isHidden={isHidden}>
+      <div className="group/paragraph relative flex flex-col md:block items-start">
+        {/* Capsule Slider Rank UI (Click to Expand) */}
         <div
-          className={cn(
-            "absolute left-0 top-0 w-6 h-6 rounded-full pointer-events-none transition-opacity duration-200",
-            isExpanded ? "opacity-0" : "opacity-100",
-          )}
-        />
-
-        {/* Retracted Rank Options (Visible when expanded) */}
-        <div
-          className={cn(
-            "flex items-center gap-1 px-1 transition-opacity duration-200 delay-75",
-            isExpanded ? "opacity-100" : "opacity-0 pointer-events-none",
-          )}
-        >
-          {RANK_OPTIONS.map((r) => (
-            <button
-              key={r}
-              onClick={(e) => {
-                e.stopPropagation();
-                onRankChange(id, r);
-                setIsExpanded(false);
-              }}
-              className={cn(
-                "w-4 h-4 rounded-full transition-all duration-150 active:scale-95",
-                rank === r
-                  ? `${RANK_COLORS[r]} ring-1 ring-stone-400/70 dark:ring-slate-400/70 scale-110`
-                  : `${RANK_COLORS[r]} opacity-40 hover:opacity-100 hover:scale-125`,
-              )}
-              title={`Rank ${r}`}
-            />
-          ))}
-        </div>
-      </div>
-
-      <p
-        onClick={() => {
-          if (isHidden) onRevealParagraph(id);
-        }}
-        className={cn(
-          "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10 w-full pr-8",
-          isHidden
-            ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
-            : getEnglishRankStyle(rank, isHidden),
-        )}
-        {...props}
-      />
-
-      {/* TTS Play Button */}
-      {!isHidden && (
-        <button
+          ref={containerRef}
           onClick={(e) => {
             e.stopPropagation();
-            if (isMePlaying) {
-              stop();
-            } else {
-              if (text) play(text);
-            }
+            if (!isExpanded) setIsExpanded(true);
           }}
-          className="absolute -right-2 top-0 p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors z-20"
-          aria-label={isMePlaying ? "Stop reading" : "Read aloud"}
-        >
-          {isMeLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : isMePlaying ? (
-            <Square className="h-4 w-4 fill-current" />
-          ) : (
-            <Volume2 className="h-4 w-4" />
+          className={cn(
+            "relative z-30 mb-2 inline-flex items-center md:absolute md:-left-9 md:top-1 md:mt-0 md:mb-0",
+            "h-6 rounded-full shadow-sm transition-all duration-300 ease-out overflow-hidden cursor-pointer",
+            isExpanded
+              ? "w-auto pr-1 bg-stone-100 dark:bg-slate-800 border border-stone-200 dark:border-slate-700"
+              : `w-6 hover:scale-110 border-2 ${RANK_COLORS[rank]}`,
           )}
-        </button>
-      )}
+          title={!isExpanded ? `Current Rank: ${rank}. Click to change.` : ""}
+        >
+          {/* Current Rank Indicator (Visible only when collapsed) */}
+          <div
+            className={cn(
+              "absolute left-0 top-0 w-6 h-6 rounded-full pointer-events-none transition-opacity duration-200",
+              isExpanded ? "opacity-0" : "opacity-100",
+            )}
+          />
 
-      <div className="h-4 md:hidden" />
-    </div>
+          {/* Retracted Rank Options (Visible when expanded) */}
+          <div
+            className={cn(
+              "flex items-center gap-1 px-1 transition-opacity duration-200 delay-75",
+              isExpanded ? "opacity-100" : "opacity-0 pointer-events-none",
+            )}
+          >
+            {RANK_OPTIONS.map((r) => (
+              <button
+                key={r}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRankChange(id, r);
+                  setIsExpanded(false);
+                }}
+                className={cn(
+                  "w-4 h-4 rounded-full transition-all duration-150 active:scale-95",
+                  rank === r
+                    ? `${RANK_COLORS[r]} ring-1 ring-stone-400/70 dark:ring-slate-400/70 scale-110`
+                    : `${RANK_COLORS[r]} opacity-40 hover:opacity-100 hover:scale-125`,
+                )}
+                title={`Rank ${r}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <p
+          onClick={() => {
+            if (isHidden) onRevealParagraph(id);
+          }}
+          className={cn(
+            "mb-2 text-stone-700 dark:text-slate-300 leading-normal transition-all duration-300 relative z-10 w-full pr-8",
+            isHidden
+              ? "blur-[6px] opacity-40 select-none hover:blur-xs hover:opacity-60 cursor-pointer"
+              : getEnglishRankStyle(rank, isHidden),
+          )}
+          {...props}
+        />
+
+        {/* TTS Play Button */}
+        {!isHidden && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isMePlaying) {
+                stop();
+              } else {
+                if (text) play(text);
+              }
+            }}
+            className="absolute -right-2 top-0 p-2 text-stone-400 hover:text-stone-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors z-20"
+            aria-label={isMePlaying ? "Stop reading" : "Read aloud"}
+          >
+            {isMeLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : isMePlaying ? (
+              <Square className="h-4 w-4 fill-current" />
+            ) : (
+              <Volume2 className="h-4 w-4" />
+            )}
+          </button>
+        )}
+
+        <div className="h-4 md:hidden" />
+      </div>
+    </ParagraphHiddenProvider>
   );
 };

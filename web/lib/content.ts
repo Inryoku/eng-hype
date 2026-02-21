@@ -97,3 +97,37 @@ export function getMethod() {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   return fileContents;
 }
+
+export interface WordRef {
+  word: string;
+  meaning: string;
+  affix: string;
+  description: string;
+}
+
+export function getWordsRef(): WordRef[] {
+  const wordsDir = path.join(contentDirectory, "words");
+  if (!fs.existsSync(wordsDir)) return [];
+
+  const fullPath = path.join(wordsDir, "words_ref.tsv");
+  if (!fs.existsSync(fullPath)) return [];
+
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const lines = fileContents
+    .split("\n")
+    .filter((l) => l.trim() && l.trim() !== ".");
+  if (lines.length <= 1) return []; // header only
+
+  return lines
+    .slice(1)
+    .map((line) => {
+      const [word, meaning, affix, description] = line.split("\t");
+      return {
+        word: word?.trim() ?? "",
+        meaning: meaning?.trim() ?? "",
+        affix: affix?.trim() ?? "",
+        description: description?.trim() ?? "",
+      };
+    })
+    .filter((w) => w.word);
+}

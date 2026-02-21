@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { getAllWords } from "@/lib/content";
+import { getAllWords, getWordsRef } from "@/lib/content";
 import { WordCard, type WordItem } from "./word-card";
+import { RefCard } from "./ref-card";
 
 function parseWords(content: string | null): WordItem[] {
   if (!content) return [];
@@ -32,6 +33,7 @@ function parseWords(content: string | null): WordItem[] {
 export default function WordsPage() {
   const content = getAllWords();
   const words = parseWords(content);
+  const refs = getWordsRef();
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 dark:bg-slate-950 dark:text-slate-100 font-[family-name:var(--font-geist-sans)] selection:bg-rose-200 selection:text-rose-900 dark:selection:bg-indigo-900 dark:selection:text-indigo-100">
@@ -64,6 +66,23 @@ export default function WordsPage() {
               No words found.
             </p>
           </div>
+        )}
+
+        {/* Word Reference Section */}
+        {refs.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold text-stone-900 dark:text-slate-100 font-[family-name:var(--font-lora)] mb-2 text-center">
+              Word Reference
+            </h2>
+            <p className="text-stone-500 dark:text-slate-400 text-center mb-8 text-sm">
+              語源・接辞から単語を理解する
+            </p>
+            <div className="flex flex-col gap-3">
+              {refs.map((r, i) => (
+                <RefCard key={i} ref_item={r} />
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

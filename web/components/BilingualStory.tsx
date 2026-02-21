@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { isSupabaseEnabled } from "@/lib/supabase";
+import type { WordRef } from "@/lib/content";
 import { SunoPlayer } from "./SunoPlayer";
 import { useSentenceRanks } from "@/hooks/useSentenceRanks";
 import { ViewModeControls } from "./story/ViewModeControls";
@@ -26,6 +27,7 @@ interface Chapter {
 
 interface BilingualStoryProps {
   chapters: Chapter[];
+  wordRefs?: WordRef[];
 }
 
 type ViewMode = "show-all" | "hide-en" | "hide-jp";
@@ -35,7 +37,7 @@ const DEFAULT_SHARED_UID = "eng-hype-shared-user";
 const SHARED_UID =
   process.env.NEXT_PUBLIC_SHARED_UID?.trim() || DEFAULT_SHARED_UID;
 
-export function BilingualStory({ chapters }: BilingualStoryProps) {
+export function BilingualStory({ chapters, wordRefs }: BilingualStoryProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("hide-en");
   const [revealedParagraphIds, setRevealedParagraphIds] = useState<RevealedMap>(
     {},
@@ -61,8 +63,16 @@ export function BilingualStory({ chapters }: BilingualStoryProps) {
         revealedParagraphIds,
         onRevealParagraph: handleRevealParagraph,
         onRankChange: saveRank,
+        wordRefs,
       }),
-    [viewMode, ranks, revealedParagraphIds, handleRevealParagraph, saveRank],
+    [
+      viewMode,
+      ranks,
+      revealedParagraphIds,
+      handleRevealParagraph,
+      saveRank,
+      wordRefs,
+    ],
   );
 
   return (
