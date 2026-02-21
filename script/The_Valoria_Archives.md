@@ -18,13 +18,13 @@ He sat in the library, a **repurposed structure** that was originally a **gymnas
 
 - 彼は図書館に座っていた。そこはもともと **体育館** だった**建物を再利用したもの**だ。
 
-Outside, **a multitude of** conservative citizens were protesting against the merger.
+Outside, **a multitude of** **conservative** citizens were protesting against the merger.
 
-- 外では、**多数の** 保守的な市民たちが合併に反対して抗議していた。
+- 外では、**多数の** **保守的な** 市民たちが合併に反対して抗議していた。
 
-**Restless dissidents** failed to grasp **the nature of** the merger: to unite the two divided nations.
+**Restless** **dissidents** failed to grasp **the nature of** the merger: to unite the two divided nations.
 
-- **落ち着きのない反抗勢力** はその合併の **本質** を理解し損ねていた。それは、分断された二つの国家を統一することだったのだ。
+- **落ち着きのない** **反抗勢力** はその合併の **本質** を理解し損ねていた。それは、分断された二つの国家を統一することだったのだ。
 
 Critical books and data were not **readily available to** the public anymore.
 
