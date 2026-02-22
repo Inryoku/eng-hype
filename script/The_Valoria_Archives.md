@@ -2,6 +2,8 @@
 
 ## Chapter 1: The Rewritten Past
 
+[The Rewritten Past](https://suno.com/s/uFfj8vde6DH9CrcE)
+
 ### Scene 1: The Repurposed Library
 
 ![The Repurposed Library](https://i.postimg.cc/Kz6QdGqF/Gemini-Generated-Image-blg7gablg7gablg7.png)

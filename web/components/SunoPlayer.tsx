@@ -9,20 +9,22 @@ interface SunoPlayerProps {
 export function SunoPlayer({ sunoId }: SunoPlayerProps) {
   const { resolvedTheme } = useTheme();
 
-  // Suno supports theme param: ?theme=dark
-  // If light mode, we can omit or explicitly check if they support theme=light
-  // Assuming default is light if omitted, or standard if dark is not specified.
-  const themeParam = resolvedTheme === "dark" ? "?theme=dark" : "";
+  // Build the embed URL, handling both theme param and existing query params
+  const baseUrl = `https://suno.com/embed/${sunoId}`;
+  const separator = sunoId.includes("?") ? "&" : "?";
+  const themeParam = resolvedTheme === "dark" ? `${separator}theme=dark` : "";
+  const src = `${baseUrl}${themeParam}`;
 
   return (
     <div className="w-full rounded-xl overflow-hidden shadow-lg border border-stone-200 dark:border-slate-800 bg-stone-100 dark:bg-stone-900">
       <iframe
-        src={`https://suno.com/embed/${sunoId}${themeParam}`}
+        suppressHydrationWarning
+        src={src}
         width="100%"
         height="152"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         className="w-full bg-transparent"
-        style={{ colorScheme: "normal" }} // Ensure iframe isn't forced by browser color-scheme
+        style={{ colorScheme: "normal" }}
       />
     </div>
   );

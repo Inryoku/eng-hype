@@ -53,6 +53,11 @@ export function WordRefPopup({ wordRef, onClose }: WordRefPopupProps) {
           <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded">
             {wordRef.meaning}
           </span>
+          {wordRef.domain && (
+            <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded">
+              {wordRef.domain}
+            </span>
+          )}
         </div>
 
         {/* Affix breakdown */}

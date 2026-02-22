@@ -35,6 +35,11 @@ export function RefCard({ ref_item }: { ref_item: WordRef }) {
           <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded whitespace-nowrap">
             {ref_item.meaning}
           </span>
+          {ref_item.domain && (
+            <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded whitespace-nowrap">
+              {ref_item.domain}
+            </span>
+          )}
           <span className="text-stone-500 dark:text-slate-400 text-sm font-mono">
             {ref_item.affix}
           </span>
