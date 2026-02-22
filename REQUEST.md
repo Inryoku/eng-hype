@@ -8,11 +8,7 @@ AI（Antigravity）は、以下のルールとワークフローに従ってコ�
 - **単語リスト**: `words/words.md` (未消化の単語置き場)
 - **ストーリー**: `script/*.md` (ジャンルごとに分割)
   - `History_Archaeology.md` (歴史・考古学)
-  - `SocialScience_Business.md` (社会科学・ビジネス)
-  - `Science_Nature.md` (科学・自然)
-  - `Technology_Engineering.md` (技術・工学)
-  - **[NEW] Medical_Ethics.md** (医療・倫理・サスペンス)
-  - **[NEW] Education_Arts.md** (教育・言語・芸術)
+  -
 - **Webアプリ**: `web/` (Next.jsでストーリーを閲覧)
 
 ## 2. ストーリー作成ルール (Must)

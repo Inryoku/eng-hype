@@ -71,3 +71,5 @@ The researcher's final **remark** was chilling, but Elijah **was unsure of** the
 - 研究者の最後の **発言** はぞっとするものだったが、その時イライジャはその文書の**信憑性**に **確信が持てなかった**。
 
 ---
+
+For a moment, Elijah
