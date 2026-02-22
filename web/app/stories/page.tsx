@@ -41,7 +41,7 @@ export default function StoriesPage() {
           } else if (story.slug.includes("History")) {
             Icon = ScrollText;
             iconColor = "text-amber-600 dark:text-amber-500";
-          } else if (story.slug.includes("Social")) {
+          } else if (story.slug.includes("Society")) {
             Icon = Users;
             iconColor = "text-blue-500 dark:text-blue-400";
           } else if (story.slug.includes("Technology")) {
