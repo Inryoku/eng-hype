@@ -18,6 +18,15 @@ function getJstDateKey(timestamp) {
     .split("T")[0];
 }
 
+function getThresholdJst(daysAgo) {
+  const now = new Date();
+  return new Date(
+    now.getTime() - daysAgo * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000,
+  )
+    .toISOString()
+    .split("T")[0];
+}
+
 async function clearCache() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -54,20 +63,25 @@ async function clearCache() {
       return;
     }
 
-    // 2. Filter files to delete (Keep files within the last 7 days)
-    const now = new Date();
-    // Convert to JST date string (YYYY-MM-DD) for 7 days ago
-    const thresholdDate = new Date(
-      now.getTime() - 7 * 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000,
-    );
-    const thresholdJST = thresholdDate.toISOString().split("T")[0];
+    // 2. Filter files to delete
+    // Keep if:
+    // - created/updated within the last 7 days (JST), OR
+    // - last accessed within the last 14 days (JST)
+    const createdThresholdJST = getThresholdJst(7);
+    const accessThresholdJST = getThresholdJst(14);
 
-    console.log(`   Keeping files created on or after: ${thresholdJST} (JST)`);
+    console.log(
+      `   Keeping files created/updated on or after: ${createdThresholdJST} (JST)`,
+    );
+    console.log(
+      `   Keeping files accessed on or after: ${accessThresholdJST} (JST)`,
+    );
 
     const filePaths = files
       .filter((f) => {
         // created_at / updated_at should be UTC ISO strings, but guard invalid values.
         const fileDateJST = getJstDateKey(f.created_at || f.updated_at);
+        const lastAccessedDateJST = getJstDateKey(f.last_accessed_at);
 
         if (!fileDateJST) {
           console.warn(
@@ -76,17 +90,25 @@ async function clearCache() {
           return false;
         }
 
-        // If from within 7 days, KEEP (return false to filter out from deletion list)
-        if (fileDateJST >= thresholdJST) {
+        // Keep recently created/updated files.
+        if (fileDateJST >= createdThresholdJST) {
           return false;
         }
-        // If older, DELETE
+
+        // Keep older files if they were accessed recently.
+        if (lastAccessedDateJST && lastAccessedDateJST >= accessThresholdJST) {
+          return false;
+        }
+
+        // Delete only if file is old and not recently accessed (or never accessed).
         return true;
       })
       .map((f) => f.name);
 
     if (filePaths.length === 0) {
-      console.log("   No old files to delete (all are within 7 days).");
+      console.log(
+        "   No cache files to delete (all are recent or recently accessed).",
+      );
       return;
     }
 
