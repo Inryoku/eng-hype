@@ -52,3 +52,32 @@ owed (A) to (B)
 
 - (意味/類語) (A)は(B)のおかげである /(AをBに借りている)
 - (Usage) He **owed** his survival **to** the underground shelter. (彼が生き延びたのは地下シェルターのおかげだった)
+
+dwell
+
+- (意味/類語) 住む、居住する (= inhabit, reside)
+- (Usage) Many citizens were forced to **dwell** in the slums of Sector V. (多くの市民がセクターVのスラム街に住むことを強いられた)
+
+more communal
+
+- (意味/類語) より共同体的な、共同の、共用の
+- (Usage) Life in the shelter became **more communal** as resources dwindled. (資源が減少するにつれ、シェルターでの生活はより共同体的なものになった)
+
+Child rearing
+
+- (意味/類語) 子育て、育児 (= child-raising, parenting)
+- (Usage) The corporation incentivized **child rearing** to ensure a future workforce. (企業は将来の労働力を確保するため、子育てを奨励した)
+
+had interfered with his work
+
+- (意味/類語) 彼の仕事の邪魔をした、差し支えた
+- (Usage) Constant surveillance **had interfered with his work** as a researcher. (絶え間ない監視が、研究員としての彼の仕事の邪魔をしていた)
+
+\*追加したい。
+the proceedings
+The politician is critical of
+conventional methods of education
+assured the government that SV
+was subsequently turned into
+manuscripts
+underwent many difficulties while

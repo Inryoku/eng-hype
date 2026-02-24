@@ -1,25 +1,27 @@
-word	meaning	domain	affix	description
-detective	探偵	推理・犯罪	de(離れて) + tect(覆う) + ive(人)	何かの「覆い」を取り払う＝隠された真実を暴く人、という意味から「探偵」。
-once-thriving	かつて繁栄した	歴史・社会	once(かつて) + thrive(繁栄する) + ing(状態)	そのまま「かつて(once)繁栄していた(thriving)」状態を表す複合語。
-radiation	放射	科学・物理	radi(光・放射) + ation(名詞化)	光や熱が中心から四方八方に放たれる現象。
-repurposed	再利用したもの	環境・再利用	re(再び/別の) + purpose(目的) + ed(状態)	当初の目的とは「別の用途」を再び与えられた状態。
-gymnasium	体育館	建物・教育	gymn(裸の) + ium(場所)	古代ギリシャで若者が衣服を脱いで（裸で）運動した場所に由来。
-multitude	多数	数量・集合	multi(多くの) + tude(状態・性質)	数が非常に多い、群衆であるという状態。
-authenticity	信憑性	品質・信頼	authentic(本物の) + ity(性質)	偽物ではなく真物であるという確実性、信頼性。
-industrious	勤勉な	性格・勤勉	industry(産業/勤める) + ous(満ちた)	絶えず努力して仕事に打ち込む様子。
-onset	始まり	医学・発生	on(向かって/上に) + set(置く)	何かが（特に病気や攻撃など不快なことが）開始して身に降りかかってくること。
-pathogen	病原体	医学・微生物	patho(病気/苦痛) + gen(生み出す)	「病気」を引き起こし「生み出す」大元。
-remark	発言	発言・表現	re(強調/再び) + mark(印/注目)	他と区別して「特に注目して言う」こと＝所見や発言。
-dissident	反体制派	政治・社会	dis(離れて) + sid(座る) + ent(人)	体制や多数派の「座」から「離れて座る」人＝反対意見を持つ人、反体制派。
-conservative	保守的な	政治・思想	con(共に) + serv(守る) + ative(性質)	昔からの習慣や体制を「共に守ろう」とする性質。
-restless	落ち着きのない	感情・状態	rest(休息) + less(〜がない)	休息が取れないほど心がざわついている、または絶え間なく動いている状態。
-readily	容易に	副詞表現	ready(準備ができた) + ly(副詞化)	準備が整っていて、すぐに（容易に）行える状態。
-indication	兆候	兆候・指標	in(中に/向かって) + dic(示す/言う) + ation(名詞化)	ある方向を指し示すこと＝兆候、表示。
-consequently	結果的に	論理・結果	con(共に) + sequ(連続する) + ent(人)	結果的に。
-pedestal	台座	比喩・文化	ped(足) + stal(置く/立つ)	像や柱の「足元」に置かれる土台."put someone on a pedestal"で「崇拝する」の意味にもなる。
-redundant	余剰の/解雇された	ビジネス	re(再び/過剰に) + dund(波立つ)	波が重なって溢れる＝必要以上に余っている状態。ビジネスでは「余剰人員として整理（リストラ）される」時によく使われる。
-plunged	急落した	経済・金融	plumb(鉛) + -unge	鉛の重みで一気に突き刺さるように飛び込む。株価などが「急落する」際によく使われる。
-clinical	臨床的な/冷淡な	医学・学術	clin(傾く/横たわる) + ical(形容詞)	病人が横たわるベッドに寄り添うこと＝「臨床」。転じて、感情を排除した「冷徹な/無機質な」態度。
-intended	〜を意図した	一般・意図	in(中に/向かって) + tend(伸ばす)	ある目的に向かって心を伸ばす＝「意図する」。本来の目的、という意味で使われる。
-decease	逝去/死亡する	医学・法律	de(離れて) + cess(行く)	今いる場所（現世）から離れていくこと＝「死亡」。dieの非常にフォーマルな表現。故人の(deceased)としても頻出。
-impulsive	衝動的な	性格・心理	im(中に/向かって) + puls(押す) + ive(性質)	心を「中からグイグイ押す」イメージ。内側から湧き上がる感情に突き動かされて、深く考えずに行動してしまうこと。
+word	meaning	simple	domain	affix	description
+detective	探偵	someone who finds the truth	推理・犯罪	de(離れて) + tect(覆う) + ive(人)	何かの「覆い」を取り払う＝隠された真実を暴く人、という意味から「探偵」。
+thriving	繁栄している	growing very well	歴史・社会	thrive(繁栄する) + ing(状態)	力強く成長し、成功を収めている状態。古代北欧語の「掴み取る」という言葉に由来し、チャンスを掴んで繁栄することを意味する。
+radiation	放射	energy like light or heat	科学・物理	radi(光・放射) + ation(名詞化)	光や熱が中心から四方八方に放たれる現象。
+repurposed	再利用したもの	using something in a new way	環境・再利用	re(再び/別の) + purpose(目的) + ed(状態)	当初の目的とは「別の用途」を再び与えられた状態。
+gymnasium	体育館	a place for sports	建物・教育	gymn(裸の) + ium(場所)	古代ギリシャで若者が衣服を脱いで（裸で）運動した場所に由来。
+multitude	多数	a very large number	数量・集合	multi(多くの) + tude(状態・性質)	数が非常に多い、群衆であるという状態。
+authenticity	信憑性	being real or true	品質・信頼	authentic(本物の) + ity(性質)	偽物ではなく真物であるという確実性、信頼性。
+industrious	勤勉な	working hard	性格・勤勉	industry(産業/勤める) + ous(満ちた)	絶えず努力して仕事に打ち込む様子。
+onset	始まり	the start of something bad	医学・発生	on(向かって/上に) + set(置く)	何かが（特に病気や攻撃など不快なことが）開始して身に降りかかってくること。
+pathogen	病原体	something that causes disease	医学・微生物	patho(病気/苦童) + gen(生み出す)	「病気」を引き起こし「生み出す」大元。
+remark	発言	something that someone says	発言・表現	re(強調/再び) + mark(印/注目)	他と区別して「特に注目して言う」こと＝所見や発言。
+dissident	反体制派	someone who disagrees with the government	政治・社会	dis(離れて) + sid(座る) + ent(人)	体制や多数派の「座」から「離れて座る」人＝反対意見を持つ人、反体制派。
+conservative	保守的な	wanting things to stay the same	政治・思想	con(共に) + serv(守る) + ative(性質)	昔からの習慣や体制を「共に守ろう」とする性質。
+restless	落ち着きのない	unable to stay still or relax	感情・状態	rest(休息) + less(〜がない)	休息が取れないほど心がざわついている、または絶え間なく動いている状態。
+readily	容易に	quickly and easily	副詞表現	ready(準備ができた) + ly(副詞化)	準備が整っていて、すぐに（容易に）行える状態。
+indication	兆候	a sign that something exists	兆候・指標	in(中に/向かって) + dic(示す/言う) + ation(名詞化)	ある方向を指し示すこと＝兆候、表示。
+consequently	結果的に	as a result	論理・結果	con(共に) + sequ(連続する) + ent(人)	結果的に。
+pedestal	台座	a base for a statue	比喩・文化	ped(足) + stal(置く/立つ)	像や柱の「足元」に置かれる土台."put someone on a pedestal"で「崇拝する」の意味にもなる。
+redundant	余剰の/解雇された	no longer needed	ビジネス	re(再び/過剰に) + dund(波立つ)	波が重なって溢れる＝必要以上に余っている状態。ビジネスでは「余剰人員として整理（リストラ）される」時によく使われる。
+plunged	急落した	fell down very quickly	経済・金融	plumb(鉛) + -unge	鉛の重みで一気に突き刺さるように飛び込む。株価などが「急落する」際によく使われる。
+clinical	臨床的な/冷淡な	cold and scientific	医学・学術	clin(傾く/横たわる) + ical(形容詞)	病人が横たわるベッドに寄り添うこと＝「臨床」。転じて、感情を排除した「冷徹な/無機質な」態度。
+intended	〜を意図した	planned or wanted	一般・意図	in(中に/向かって) + tend(伸ばす)	ある目的に向かって心を伸ばす＝「意図する」。本来の目的、という意味で使われる。
+decease	逝去/死亡する	to die	医学・法律	de(離れて) + cess(行く)	今いる場所（現世）から離れていくこと＝「死亡」。dieの非常にフォーマルな表現。故人の(deceased)としても頻出。
+impulsive	衝動的な	acting without thinking	性格・心理	im(中に/向かって) + puls(押す) + ive(性質)	心を「中からグイグイ押す」イメージ。内側から湧き上がる感情に突き動かされて、深く考えずに行動してしまうこと。
+peasants	農民/小作農	poor farmers	歴史・社会	pagus(田舎/地方) + ant(人)	【pagus(田舎)】+【-ant(人)】で、田舎に住み土地を耕す「農民」のこと。現代では「田舎者」「無教養な人」というネガティブなニュアンスで使われることもある。
+inflict	（苦痛などを）与える/負わせる	to cause pain or damage	紛争・損害	in(中に) + flict(打つ)	相手のふところに「打ち込む」イメージ。痛みや損害、罰などを一方的に与える際に使われる。conflict(対立＝共に打ち合う)と同じ語源。

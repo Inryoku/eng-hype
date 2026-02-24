@@ -101,6 +101,7 @@ export function getMethod() {
 export interface WordRef {
   word: string;
   meaning: string;
+  simple: string;
   domain: string;
   affix: string;
   description: string;
@@ -122,10 +123,12 @@ export function getWordsRef(): WordRef[] {
   return lines
     .slice(1)
     .map((line) => {
-      const [word, meaning, domain, affix, description] = line.split("\t");
+      const [word, meaning, simple, domain, affix, description] =
+        line.split("\t");
       return {
         word: word?.trim() ?? "",
         meaning: meaning?.trim() ?? "",
+        simple: simple?.trim() ?? "",
         domain: domain?.trim() ?? "",
         affix: affix?.trim() ?? "",
         description: description?.trim() ?? "",

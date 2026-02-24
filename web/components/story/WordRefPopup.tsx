@@ -45,18 +45,27 @@ export function WordRefPopup({ wordRef, onClose }: WordRefPopupProps) {
           ✕
         </button>
 
-        {/* Word + Meaning */}
-        <div className="flex items-baseline gap-3 mb-4">
-          <span className="text-2xl md:text-3xl font-bold text-amber-800 dark:text-teal-300 font-serif">
-            {wordRef.word}
-          </span>
-          <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded">
-            {wordRef.meaning}
-          </span>
-          {wordRef.domain && (
-            <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded">
-              {wordRef.domain}
+        {/* Header Section */}
+        <div className="mb-5">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">
+            <span className="text-2xl md:text-3xl font-bold text-amber-800 dark:text-teal-300 font-serif leading-tight">
+              {wordRef.word}
             </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded whitespace-nowrap">
+                {wordRef.meaning}
+              </span>
+              {wordRef.domain && (
+                <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded whitespace-nowrap">
+                  {wordRef.domain}
+                </span>
+              )}
+            </div>
+          </div>
+          {wordRef.simple && (
+            <div className="text-[15px] font-medium text-amber-700/90 dark:text-teal-300/90">
+              {wordRef.simple}
+            </div>
           )}
         </div>
 

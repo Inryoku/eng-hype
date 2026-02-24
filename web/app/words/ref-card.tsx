@@ -15,40 +15,52 @@ export function RefCard({ ref_item }: { ref_item: WordRef }) {
           : "shadow-sm"
       }`}
     >
-      {/* 1st line: Word + Meaning + Affix */}
-      <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
-        <div className="flex items-center justify-between w-full md:w-auto gap-2">
-          <h3
-            className={`text-xl md:text-2xl font-bold font-serif transition-colors shrink-0 ${
-              !isOpen
-                ? "text-amber-800 dark:text-teal-300 group-hover:text-amber-600 dark:group-hover:text-teal-400"
-                : "text-amber-800 dark:text-teal-300"
-            }`}
-          >
-            {ref_item.word}
-          </h3>
-          {!isOpen && (
-            <span className="md:hidden text-stone-400 text-xs">▼</span>
-          )}
-        </div>
-        <div className="flex items-baseline gap-2 grow flex-wrap">
-          <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded whitespace-nowrap">
-            {ref_item.meaning}
-          </span>
-          {ref_item.domain && (
-            <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded whitespace-nowrap">
-              {ref_item.domain}
+      {/* Header section wrapper */}
+      <div className="flex flex-col gap-2 w-full">
+        {/* 1st line: Word + Meaning + Affix */}
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+          <div className="flex items-center justify-between w-full md:w-auto gap-2">
+            <h3
+              className={`text-xl md:text-2xl font-bold font-serif transition-colors shrink-0 ${
+                !isOpen
+                  ? "text-amber-800 dark:text-teal-300 group-hover:text-amber-600 dark:group-hover:text-teal-400"
+                  : "text-amber-800 dark:text-teal-300"
+              }`}
+            >
+              {ref_item.word}
+            </h3>
+            {!isOpen && (
+              <span className="md:hidden text-stone-400 text-xs shrink-0">
+                ▼
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2 grow flex-wrap">
+            <span className="text-xs font-semibold bg-amber-100 dark:bg-teal-900/50 text-amber-700 dark:text-teal-200 px-2 py-0.5 rounded whitespace-nowrap">
+              {ref_item.meaning}
             </span>
-          )}
-          <span className="text-stone-500 dark:text-slate-400 text-sm font-mono">
-            {ref_item.affix}
-          </span>
-          {!isOpen && (
-            <span className="hidden md:block text-stone-400 text-xs ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-              クリックで開く ▼
+            {ref_item.domain && (
+              <span className="text-xs font-medium bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-300 px-2 py-0.5 rounded whitespace-nowrap">
+                {ref_item.domain}
+              </span>
+            )}
+            <span className="text-stone-500 dark:text-slate-400 text-sm font-mono whitespace-nowrap">
+              {ref_item.affix}
             </span>
-          )}
+            {!isOpen && (
+              <span className="hidden md:block text-stone-400 text-xs ml-auto opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                クリックで開く ▼
+              </span>
+            )}
+          </div>
         </div>
+
+        {/* 2nd line: Simple Definition */}
+        {ref_item.simple && (
+          <div className="text-sm font-medium text-amber-700/90 dark:text-teal-300/90 md:mt-0.5">
+            {ref_item.simple}
+          </div>
+        )}
       </div>
 
       {/* 2nd line: Description (Collapsible) */}
