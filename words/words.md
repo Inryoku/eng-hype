@@ -75,16 +75,96 @@ had interfered with his work
 
 \*追加したい。
 the proceedings
+
+- (意味/類語) 一連の出来事、手続き、会議の進行
+- (Usage) Julian Cross began **the proceedings** with a brief speech about the future. (ジュリアン・クロスは未来についての短いスピーチから会議の進行を始めた)
+
 The politician is critical of
+
+- (意味/類語) その政治家は〜に批判的である
+- (Usage) **The politician is critical of** the corporation's genetic experiments. (その政治家は企業の遺伝子実験に対して批判的である)
+
 conventional methods of education
+
+- (意味/類語) 従来の教育手法
+- (Usage) Panacea BioTech deemed **conventional methods of education** inefficient for their clones. (パナケア・バイオテックは、従来の教育手法を自社のクローンに対しては非効率だと見なした)
+
 assured the government that SV
+
+- (意味/類語) SVであると政府に保証した
+- (Usage) The CEO **assured the government that** the chemical waste was perfectly safe. (CEOは、その化学廃棄物が完全に安全であると政府に保証した)
+
 was subsequently turned into
+
+- (意味/類語) その後〜に変わった、変えられた
+- (Usage) The ancient library **was subsequently turned into** a secretive research lab. (その古代の図書館は、その後秘密の研究室に変えられた)
+
 manuscripts
+
+- (意味/類語) 手稿、原稿、写本
+- (Usage) Elias found handwritten **manuscripts** detailing the true cause of Valoria's fall. (エリアスは、ヴァロリア崩壊の真の原因を詳しく記した手書きの原本を見つけた)
+
 underwent many difficulties while
+
+- (意味/類語) 〜する間、多くの困難を経験した（耐えた）
+- (Usage) The team **underwent many difficulties while** probing the ground for Sector 0. (チームはセクター0の地下を調査する間、多くの困難を経験した)
+
 attained their goal of cloning a sheep
+
+- (意味/類語) 羊のクローンを作るという目標を達成した
+- (Usage) Soon after they **attained their goal of cloning a sheep**, they moved on to human trials. (羊のクローンを作るという目標を達成した直後、彼らは人体実験へと移行した)
+
 The suspect was vigorous in
+
+- (意味/類語) その容疑者は〜において精力的（活発）であった
+- (Usage) **The suspect was vigorous in** hiding the evidence of the onset of the plague. (その容疑者は、疫病の発生を示す証拠を精力的に隠蔽していた)
+
 The company’s turnover
+
+- (意味/類語) その会社の売上高、離職率
+- (Usage) **The company’s turnover** plunged following the leaked report on Sector 0. (セクター0に関するレポートが流出した後、その会社の売上高は急落した)
+
 promotes cooperation between
+
+- (意味/類語) 〜間の協力を促進する
+- (Usage) The new policy artificially **promotes cooperation between** different clone batches. (新しい政策は、異なるクローン集団間の協力を人為的に促進している)
+
 the taxpayer’s duty
+
+- (意味/類語) 納税者の義務
+- (Usage) Propaganda claimed that funding the military expansion was **the taxpayer’s duty**. (プロパガンダは、軍縮拡大に資金を提供するのは納税者の義務だと主張した)
+
 total earnings
+
+- (意味/類語) 総収入、総収益
+- (Usage) Panacea BioTech's **total earnings** exceeded the budget of several nations combined. (パナケア・バイオテックの総収益は、いくつかの国家の予算を合わせた額を上回っていた)
+
 surrender their weapons
+
+- (意味/類語) 彼らの武器を引き渡す、降伏する
+- (Usage) The dissenters were ordered to **surrender their weapons** or face execution. (反体制派は武器を引き渡すか、さもなくば処刑されるよう命じられた)
+
+went on an expedition to
+
+- (意味/類語) 〜への遠征に出かけた
+- (Usage) The archaeologists **went on an expedition to** uncover the ruins of ancient Valoria. (考古学者たちは、古代ヴァロリアの遺跡を発見するための遠征に出かけた)
+
+The prescription of antibiotics
+
+- (意味/類語) 抗生物質の処方
+- (Usage) **The prescription of antibiotics** was heavily restricted to citizens of Sector V. (抗生物質の処方は、セクターVの市民に対しては厳しく制限されていた)
+
+proposition
+
+- (意味/類語) 提案、命題
+- (Usage) Maya Lin found the CEO's **proposition** to be both highly profitable and deeply unethical. (マヤ・リンは、CEOの提案が非常に利益を生むと同時に極めて非倫理的であると気づいた)
+
+coordinated their research
+
+- (意味/類語) 彼らの研究を連携（調整）させた
+- (Usage) The two divided laboratories secretly **coordinated their research** to expose the truth. (分断された二つの研究所は、真実を暴くために秘密裏に研究を連携させた)
+
+追加したいもの
+The problem was compounded by
+
+The dean
