@@ -3,6 +3,7 @@ import {
   useMemo,
   useEffect,
   useRef,
+  Children,
   type ComponentPropsWithoutRef,
 } from "react";
 import { cn } from "@/lib/utils";
@@ -13,6 +14,7 @@ import { Volume2, Loader2, Square } from "lucide-react";
 
 import { useTTS } from "@/components/TTSContext";
 import { ParagraphHiddenProvider } from "./ParagraphHiddenContext";
+import { InteractiveText } from "./InteractiveText";
 
 function extractText(node: unknown, emphatic = false): string {
   if (!node || typeof node !== "object") return "";
@@ -219,8 +221,14 @@ export const EnglishParagraph = ({
               : getEnglishRankStyle(rank, isHidden),
           )}
           {...props}
-        />
-
+        >
+          {Children.map(props.children, (child) => {
+            if (typeof child === "string") {
+              return <InteractiveText text={child} contextText={text} />;
+            }
+            return child;
+          })}
+        </p>
         {/* TTS Play Button */}
         {!isHidden && (
           <button
@@ -244,7 +252,6 @@ export const EnglishParagraph = ({
             )}
           </button>
         )}
-
         <div className="h-4 md:hidden" />
       </div>
     </ParagraphHiddenProvider>

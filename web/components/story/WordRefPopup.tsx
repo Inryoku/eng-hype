@@ -74,9 +74,15 @@ export function WordRefPopup({ wordRef, onClose }: WordRefPopupProps) {
           <span className="text-xs font-semibold bg-stone-100 dark:bg-slate-800 text-stone-600 dark:text-slate-400 px-2 py-0.5 rounded whitespace-nowrap mt-0.5">
             接辞
           </span>
-          <span className="text-stone-700 dark:text-slate-300 font-mono text-sm md:text-base">
-            {wordRef.affix}
-          </span>
+          {wordRef.affix ? (
+            <span className="text-stone-700 dark:text-slate-300 font-mono text-sm md:text-base">
+              {wordRef.affix}
+            </span>
+          ) : (
+            <span className="text-stone-400 dark:text-slate-500 text-sm mt-0.5">
+              （なし）
+            </span>
+          )}
         </div>
 
         {/* Description */}
