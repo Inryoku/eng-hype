@@ -129,16 +129,6 @@ promotes cooperation between
 - (意味/類語) 〜間の協力を促進する
 - (Usage) The new policy artificially **promotes cooperation between** different clone batches. (新しい政策は、異なるクローン集団間の協力を人為的に促進している)
 
-the taxpayer’s duty
-
-- (意味/類語) 納税者の義務
-- (Usage) Propaganda claimed that funding the military expansion was **the taxpayer’s duty**. (プロパガンダは、軍縮拡大に資金を提供するのは納税者の義務だと主張した)
-
-total earnings
-
-- (意味/類語) 総収入、総収益
-- (Usage) Panacea BioTech's **total earnings** exceeded the budget of several nations combined. (パナケア・バイオテックの総収益は、いくつかの国家の予算を合わせた額を上回っていた)
-
 surrender their weapons
 
 - (意味/類語) 彼らの武器を引き渡す、降伏する
@@ -165,6 +155,8 @@ coordinated their research
 - (Usage) The two divided laboratories secretly **coordinated their research** to expose the truth. (分断された二つの研究所は、真実を暴くために秘密裏に研究を連携させた)
 
 追加したいもの
-The problem was compounded by
+formality
 
 The dean
+
+prior to

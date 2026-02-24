@@ -45,8 +45,8 @@ export async function POST(req: Request) {
         .from("dictionary_cache")
         .select("*")
         .eq("word", normalizedWord)
-        .eq("context", context)
-        .single();
+        .limit(1)
+        .maybeSingle();
 
       if (cachedHit) {
         console.log(
