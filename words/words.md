@@ -84,3 +84,7 @@ underwent many difficulties while
 attained their goal of cloning a sheep
 The suspect was vigorous in
 The company’s turnover
+promotes cooperation between
+the taxpayer’s duty
+total earnings
+surrender their weapons

@@ -5,6 +5,8 @@ const apiKey = process.env.GEMINI_API_KEY;
 // Fallback to OpenAI or throw error based on preference, but here we require Gemini.
 const genAI = new GoogleGenerativeAI(apiKey || "");
 
+export const maxDuration = 60; // Allow up to 60 seconds (useful for Vercel/Next.js limits)
+
 export async function POST(req: Request) {
   try {
     const { word, context } = await req.json();
@@ -41,22 +43,71 @@ export async function POST(req: Request) {
 {
   "word": "見出し語（原形が好ましいが文脈による）",
   "meaning": "この文脈での端的な日本語の意味（短く）",
-  "simple": "この単語の英語でのかんたんな言い換え・説明",
+  "simple": "この単語の英語でのかんたんな言い換え",
   "domain": "単語の分野・カテゴリ（例：政治、感情、一般、医学等。短く）",
   "affix": "語源や接辞（例：de(離れて) + tect(覆う) + ive(人)、なければ空文字）",
   "description": "50文字程度の単語の簡単な解説。もし語源や接辞（affix）がある場合はその成り立ちを踏まえた解説を、ない場合はその単語のコアとなるニュアンスや使われ方を50文字程度で解説してください。あくまで文脈よりも『単語そのもの』の解説をメインにしてください。"
 }`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    console.log(`[Dictionary API] Requesting definition for word: "${word}"`);
 
-    const parsed = JSON.parse(text);
+    // Retry logic for 503 Service Unavailable errors
+    let text = "";
+    let retries = 3;
+    let delayMs = 1000;
 
-    return NextResponse.json(parsed);
-  } catch (error) {
-    console.error("Dictionary API Error:", error);
+    while (retries > 0) {
+      try {
+        const result = await model.generateContent(prompt);
+        text = result.response.text();
+        break; // Success, exit retry loop
+      } catch (err: unknown) {
+        retries--;
+        const error = err as { status?: number };
+        if (retries === 0 || error?.status !== 503) {
+          throw err; // Out of retries or not a 503 error, throw to outer catch
+        }
+        console.warn(
+          `[Dictionary API] 503 Service Unavailable. Retrying in ${delayMs}ms... (${retries} retries left)`,
+        );
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+        delayMs *= 2; // Exponential backoff
+      }
+    }
+
+    console.log(
+      `[Dictionary API] Raw response from Gemini for "${word}":\n`,
+      text,
+    );
+
+    try {
+      // In case Gemini wraps the response in markdown code blocks like ```json ... ```
+      const cleanedText = text
+        .replace(/```json\n/g, "")
+        .replace(/```/g, "")
+        .trim();
+      const parsed = JSON.parse(cleanedText);
+      return NextResponse.json(parsed);
+    } catch (parseError: unknown) {
+      console.error(
+        `[Dictionary API] JSON Parse Error for word "${word}":`,
+        parseError,
+      );
+      console.error(`[Dictionary API] Failing Text:\n`, text);
+      return NextResponse.json(
+        { error: "Failed to parse definition json" },
+        { status: 500 },
+      );
+    }
+  } catch (error: unknown) {
+    console.error("[Dictionary API] Fatal Error:", error);
+    // Vercel logs will show error.message and stack
+    const err = error as { message?: string };
     return NextResponse.json(
-      { error: "Failed to fetch definition" },
+      {
+        error: "Failed to fetch definition",
+        details: err?.message || "Unknown error",
+      },
       { status: 500 },
     );
   }
