@@ -1,8 +1,8 @@
 import type { Components } from "react-markdown";
-import type { WordRef } from "@/lib/content";
 import { EnglishParagraph } from "./EnglishParagraph";
 import { JapaneseList } from "./JapaneseList";
-import { ClickableWord } from "./ClickableWord";
+import { InteractiveText } from "./InteractiveText";
+import { Children } from "react";
 
 type ViewMode = "show-all" | "hide-en" | "hide-jp";
 type RankMap = Record<string, number>;
@@ -14,23 +14,13 @@ export function createSceneMarkdownComponents({
   revealedParagraphIds,
   onRevealParagraph,
   onRankChange,
-  wordRefs,
 }: {
   viewMode: ViewMode;
   ranks: RankMap;
   revealedParagraphIds: RevealedMap;
   onRevealParagraph: (hash: string) => void;
   onRankChange: (hash: string, rank: number) => void;
-  wordRefs?: WordRef[];
 }): Components {
-  // Build a lookup map for fast matching (lowercase word -> WordRef)
-  const wordRefMap = new Map<string, WordRef>();
-  if (wordRefs) {
-    for (const ref of wordRefs) {
-      wordRefMap.set(ref.word.toLowerCase(), ref);
-    }
-  }
-
   const components: Components = {
     blockquote: ({ ...props }) => (
       <blockquote
@@ -39,38 +29,27 @@ export function createSceneMarkdownComponents({
       />
     ),
     strong: ({ children, ...props }) => {
-      // Extract text from children
+      // Extract text content to use as context for InteractiveText
       const text =
         typeof children === "string"
           ? children
           : Array.isArray(children)
             ? children.map((c) => (typeof c === "string" ? c : "")).join("")
             : "";
-
-      // Check if any word in the TSV matches (case-insensitive)
-      const textLower = text.toLowerCase();
-      let matchedRef: WordRef | undefined;
-      for (const [word, ref] of wordRefMap) {
-        if (textLower.includes(word)) {
-          matchedRef = ref;
-          break;
-        }
-      }
-
-      if (matchedRef) {
-        return (
-          <ClickableWord wordRef={matchedRef} {...props}>
-            {children}
-          </ClickableWord>
-        );
-      }
-
       return (
         <strong
           className="text-foreground font-bold bg-orange-100 dark:bg-cyan-900/50 dark:text-cyan-200 px-1 rounded mx-0.5 font-sans tracking-wide text-base align-baseline dark:shadow-[0_0_10px_rgba(34,211,238,0.2)]"
           {...props}
         >
-          {children}
+          {Children.map(children, (child) => {
+            if (typeof child === "string") {
+              // We pass the word text itself as context text.
+              // Note: For better context, paragraph wrapping text would ideally be used,
+              // but since strong is isolated we use its own text.
+              return <InteractiveText text={child} contextText={text} />;
+            }
+            return child;
+          })}
         </strong>
       );
     },

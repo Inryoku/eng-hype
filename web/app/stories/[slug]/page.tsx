@@ -1,4 +1,4 @@
-import { getAllStories, getStory, getWordsRef } from "@/lib/content";
+import { getAllStories, getStory } from "@/lib/content";
 import { parseStoryStructure } from "@/lib/markdown";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -20,7 +20,6 @@ export default async function StoryPage({
 }) {
   const { slug } = await params;
   const story = getStory(slug);
-  const wordRefs = getWordsRef();
 
   if (!story) {
     return (
@@ -74,7 +73,7 @@ export default async function StoryPage({
         )}
 
         {/* Story Content Wrapper */}
-        <BilingualStory chapters={chapters} wordRefs={wordRefs} />
+        <BilingualStory chapters={chapters} />
       </div>
     </div>
   );
